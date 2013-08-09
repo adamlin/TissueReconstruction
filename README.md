@@ -8,18 +8,22 @@ TissueReconstruction has been written in C and it wrap graphicsmagick and ITK wi
 TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /max_contrast/. Other directories are system generated for building active architecture.
 
 Building Settings in Xcode:
+
     Install libraries using macport: graphicmagick, ITK (Insight Segmentation and Registration Toolkit)
     Architectures: 64 bit Intel
     Complier for C: LLVM compiler 4.1
     Header Search Paths: /opt/local/include/GraphicsMagick/
     Library Search Paths: /opt/local/lib/ /opt/local/bin/ /usr/local/opt/
+
 Build Phases in Xcode:
+
     Include Link Binary With Libraries: libGraphicsMagick.3.dylib
 
 The reconstruction functions are located in /max_contrast/main.c under the name of: 
 
-restocking (FILE_PATH)  =>  image restocking
-image_processing (FILE_PATH) => max contrast, masking, deconstruction, resizing …….
+    restocking (FILE_PATH)  =>  image restocking
+
+    image_processing (FILE_PATH) => max contrast, masking, deconstruction, resizing …….
 
 ## Compilation
 
