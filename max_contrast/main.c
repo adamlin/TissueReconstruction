@@ -31,8 +31,8 @@
 int		main(int argc, char *argv[])
 {
     InitializeMagick("/");
-    restocking(FILE_PATH);
-    //image_processing(FILE_PATH);
+    restocking(FILE_PATH, 800, 1600, FILE_CON_OUTPUT);
+    //image_processing(FILE_PATH, FILE_GRAY_OUTPUT);
     DestroyMagick();
     return (0);
 }

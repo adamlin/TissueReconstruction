@@ -106,7 +106,7 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/brain_2/"
+#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/"
@@ -122,9 +122,8 @@ for dcraw decoding with command="/opt/local/bin/"
 */
 
 /*      functions.c     */
-void        restocking(char *path);
-void        image_processing(char *path);
-#define TOTAL_WIDTH_RESTOCKING 1600
+void        restocking(char *path, int start_slide, int end_slide, char *output_path);
+void        image_processing(char *path, char *output_path);
 
 /*      max_contract.c  */
 Image		*get_image_from_path(char *path);

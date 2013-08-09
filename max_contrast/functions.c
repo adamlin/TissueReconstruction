@@ -19,10 +19,10 @@
 
 #include "max_contrast.h"
 
-void restocking(char *path)
+void restocking(char *path, int start_slide, int end_slide, char *output_path)
 {
     Image           *img, *yz_img, *xz_img;
-    int             f = 700;
+    int             f = start_slide;
     DIR             *FD;
     struct dirent   *in_file;
     struct dirent   **namelist;
@@ -46,7 +46,7 @@ void restocking(char *path)
     c->final_his_val  = NULL;
     t->max_threshold  = 0;
     
-    while (f < TOTAL_WIDTH_RESTOCKING) {
+    while (f < end_slide) {
         z->z_dec                        = scandir(FILE_PATH, &namelist, 0, alphasort);
         z->count_slide                  = 0;
         z->pixel_count_slide_start      = 1;
@@ -81,18 +81,18 @@ void restocking(char *path)
         }
         yz_img = yz_final_construct(z);
         yz_img = resize_image(yz_img, z->z_dec * 6, z->y_dec, BoxFilter, 0.5);
-        yz_img = blur_image(yz_img, 2, 2);
+        //yz_img = blur_image(yz_img, 2, 2);
         
         xz_img = xz_final_construct(z);
         xz_img = resize_image(xz_img, z->x_dec, z->z_dec * 6, BoxFilter, 0.5);
-        xz_img = blur_image(xz_img, 2, 2);
+        //xz_img = blur_image(xz_img, 2, 2);
         
         asprintf(&name, "%s%i", "yz_image_", f);
-        dump_image(yz_img, FILE_CON_OUTPUT,name,"jpg");
+        dump_image(yz_img, output_path,name,"jpg");
         printf("restocked slide: %s\n", name);
         
         asprintf(&name, "%s%i", "xz_image_", f);
-        dump_image(xz_img, FILE_CON_OUTPUT,name,"jpg");
+        dump_image(xz_img, output_path,name,"jpg");
         printf("restocked slide: %s\n", name);
         
         closedir(FD);
@@ -108,7 +108,7 @@ void restocking(char *path)
     return;
 }
 
-void image_processing(char *path)
+void image_processing(char *path, char *output_path)
 {
     
     
@@ -208,7 +208,7 @@ void image_processing(char *path)
         
         //img = crop_masked_final_image(org_img, img);
         //img = maximum_contrast_image (img);
-        //img = unsharp_mask_image(img,5,5); //deconvolution method using graphicmagic
+        //img = unsharp_mask_image(img,3,3); //deconvolution method using graphicmagic
         /*
         if (second_img != (Image *) NULL){
             DestroyImage(second_img);
@@ -217,7 +217,7 @@ void image_processing(char *path)
             DestroyImage(th_img);
         }
         */
-        dump_image(img, FILE_GRAY_OUTPUT, in_file->d_name , "jpeg");
+        dump_image(img, output_path, in_file->d_name , "jpeg");
         DestroyImage(org_img);
         //free(imagePath);
     }
