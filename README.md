@@ -19,7 +19,7 @@ Build Phases in Xcode:
 
     Include Link Binary With Libraries: libGraphicsMagick.3.dylib
 
-The reconstruction functions are located in /max_contrast/main.c under the name of: 
+The reconstruction functions are located in /max_contrast/function.c under the name of: 
 
     restocking (FILE_PATH)  =>  image restocking
 
