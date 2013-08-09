@@ -17,6 +17,12 @@
  **
  */
 
+/*
+ ** This is a Otsu Thresholding. Details and License can be found in 
+ ** <http://en.wikipedia.org/wiki/Otsu's_method>
+ ** Otsu's method is used to automatically perform clustering-based image thresholding 
+ ** or, the reduction of a graylevel image to a binary image. 
+*/
 #include "max_contrast.h"
 
 char* otsu_th(int x_size1, int y_size1, char *image1, c_threshold *c)
