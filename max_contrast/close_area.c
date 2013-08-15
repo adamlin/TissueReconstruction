@@ -96,14 +96,13 @@ void initializePixelStack(struct pixel_stack * stack) {
 /*          end of close_area header        */
 /*          function go under               */
 void apply_close_area(PixelPacket * read, PixelPacket * write, unsigned long int width, unsigned long int height) {
-    
     // create a new stack and initialize it
     struct pixel_stack * my_stack = NULL;
     my_stack = malloc(sizeof(*my_stack));
     initializePixelStack(my_stack);
     
     // create our first start pixel, the middle of the image and add it to the stack
-    my_stack->push(my_stack, width /2 , height / 2);
+    my_stack->push(my_stack, width/2 , height/2);
     
     //short theVeryFirstPixel = 1;
     
@@ -114,7 +113,7 @@ void apply_close_area(PixelPacket * read, PixelPacket * write, unsigned long int
         if (top_of_stack == NULL) // exit !
             break;
         
-        unsigned short value = (unsigned short) read[(width * top_of_stack->y) + top_of_stack->x].red;
+        unsigned short value = (unsigned short) read[(width * top_of_stack->y) + top_of_stack->x].green;
         
         // problems with the middle point not being empty
         /*
@@ -132,11 +131,11 @@ void apply_close_area(PixelPacket * read, PixelPacket * write, unsigned long int
         */
         // regular fill        
         if (value == EMPTY_SPACE_COLOR) {
-            if (width * top_of_stack->y + top_of_stack->x > width * height) {
+            /*if (width * top_of_stack->y + top_of_stack->x > width * height) {
                 printf("%li:%li\n", top_of_stack->y, top_of_stack->x);
                 break;
-            }
-            read[width * top_of_stack->y + top_of_stack->x].red =
+            }*/
+            read[width * top_of_stack->y + top_of_stack->x].green =
             write[width * top_of_stack->y + top_of_stack->x].red =
             write[width * top_of_stack->y + top_of_stack->x].green =
             write[width * top_of_stack->y + top_of_stack->x].blue = FILL_COLOR;
@@ -160,15 +159,13 @@ void apply_close_area(PixelPacket * read, PixelPacket * write, unsigned long int
     free(my_stack);
 }
 
-Image    *close_area(Image *image)
-{
-    Image *newImage = NULL;
-    ImageInfo *imageInfo, * newImageInfo = NULL;
-    ExceptionInfo exception;
+Image    *close_area(Image *image){
+    Image           *newImage = NULL;
+    ImageInfo       *imageInfo, *newImageInfo = NULL;
+    ExceptionInfo   exception;
     
-    InitializeMagick(NULL);
-    imageInfo=CloneImageInfo(0);
-    newImageInfo=CloneImageInfo(0);
+    imageInfo       = CloneImageInfo(0);
+    newImageInfo    = CloneImageInfo(0);
     GetExceptionInfo(&exception);
 
     if (image == NULL) { // CANNOT READ IMAGE FILE
@@ -184,7 +181,7 @@ Image    *close_area(Image *image)
         PixelPacket * pixelsWritten = NULL;
         unsigned long int width = image->columns;
         unsigned long int height = image->rows;
-        
+
         // read source image
         if ((pixelsRead = GetImagePixels(image, 0, 0, width, height)) == NULL)
             printf("Error getting pixels\n");
@@ -196,10 +193,9 @@ Image    *close_area(Image *image)
         // call the flood fill algorithm
         apply_close_area(pixelsRead, pixelsWritten, width, height);
         SyncImagePixels(newImage);
-        
-        // CLEAN UP
         DestroyImage(image);
         DestroyImageInfo(imageInfo);
     }
+    
     return (newImage);
 }

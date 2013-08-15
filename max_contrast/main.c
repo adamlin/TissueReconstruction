@@ -28,13 +28,21 @@
 
 #include "max_contrast.h"
 
-int		main(int argc, char *argv[])
+int		main()
 {
     InitializeMagick("/");
-    restocking(FILE_PATH, 800, 1600, FILE_CON_OUTPUT);
-    //image_processing(FILE_PATH, FILE_GRAY_OUTPUT);
+    //restocking(FILE_PATH, 760, 960, FILE_CON_OUTPUT);
+    //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
+    image_correction(FILE_PATH, FILE_MAX_OUTPUT);
     DestroyMagick();
     return (0);
 }
 
 
+/* main used for argv[] */
+/*
+int     main(int argc, char *argv[])
+{
+
+}
+*/

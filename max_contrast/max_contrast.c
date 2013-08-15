@@ -1,4 +1,4 @@
-/*
+;/*
  **
  ** This file is part of TissueReconstruction.
  **
@@ -74,7 +74,7 @@ Image *transparent_image(Image *img)
     int             i = 0, j = 0, size_x, size_y;
     char            *string_img = malloc(img->rows * img->columns * sizeof(*string_img));
     PixelPacket     *px;
-    char            *pixel_value;
+    char            *pixel_value = NULL;
     ExceptionInfo   exception;
     
     GetExceptionInfo(&exception);
@@ -86,7 +86,7 @@ Image *transparent_image(Image *img)
     while (i < size_y) {
         j = 0 ;
         while (j < size_x) {
-            pixel_value = (char *)px[(size_x * i) + j].green;
+            pixel_value[(size_x * i) + j]= px[(size_x * i) + j].green;
             printf("%c",px[i].green);
         }
     }
@@ -94,8 +94,9 @@ Image *transparent_image(Image *img)
     return (img);
 }
 
-Image *crop_image(Image *img, char *path)
+Image *crop_image(Image *img, char *path, int image_width, int image_height, int width_offset, int height_offset)
 {
+    Image           *new_img = NULL;
     ImageInfo       *image_info;
     Image           *tmp;
     RectangleInfo   *portion;
@@ -103,10 +104,10 @@ Image *crop_image(Image *img, char *path)
 
 
     portion = malloc(sizeof(*portion));
-    portion->width = IMAGE_WIDTH;
-    portion->height = IMAGE_HEIGHT;
-    portion->x = IMAGE_WIDTH_OFFSET;
-    portion->y = IMAGE_HEIGHT_OFFSET;
+    portion->width = image_width;
+    portion->height = image_height;
+    portion->x = width_offset;
+    portion->y = height_offset;
     
     
     GetExceptionInfo(&exception);
@@ -119,16 +120,17 @@ Image *crop_image(Image *img, char *path)
     
     strcpy(image_info->filename, path);
     
-    if ((img = ReadImage(image_info, &exception)) == NULL)
+    if ((new_img = ReadImage(image_info, &exception)) == NULL)
     {
         CatchException(&exception);
+        DestroyImage(new_img);
         DestroyImageInfo(image_info);
         free(portion);
         return (NULL);
     }
-    tmp = img;
+    tmp = new_img;
     
-    if ((img = CropImage(img, portion, &exception)) == NULL) {
+    if ((new_img = CropImage(img, portion, &exception)) == NULL) {
         CatchException(&exception);
         DestroyImage(tmp);
         DestroyImageInfo(image_info);
@@ -136,10 +138,13 @@ Image *crop_image(Image *img, char *path)
         return (NULL);
     }
     
+    DestroyImage(img);
     DestroyImage(tmp);
     DestroyImageInfo(image_info);
     free(portion);
-    return (img);
+    SyncImagePixels(new_img);
+    free(path);
+    return (new_img);
 }
 
 
@@ -151,16 +156,18 @@ Image		*get_grayscale_image(Image *img)
     info.colorspace = GRAYColorspace;
     info.number_colors = 256;
     QuantizeImage(&info, img);
+    SyncImagePixels(img);
     return (img);
 }
 
 Image       *get_threshold_image(Image *img, c_threshold *c)
 {
-    int size_x, size_y;
-    int i = 0;
-    int j = 0;
-    char *string_img = malloc(img->rows * img->columns * sizeof(*string_img));
-    char *temp_string_img;
+    Image       *threshold_img;
+    int         size_x, size_y;
+    int         i = 0;
+    int         j = 0;
+    char        *string_img = malloc(img->rows * img->columns * sizeof(*string_img));
+    char        *temp_string_img;
     PixelPacket	*px;
     ExceptionInfo	exception;
     
@@ -180,38 +187,39 @@ Image       *get_threshold_image(Image *img, c_threshold *c)
     }
     temp_string_img = otsu_th(size_x, size_y, string_img, c);
     
-    img = ConstituteImage(size_x, size_y, "I", CharPixel, temp_string_img, &exception);
+    threshold_img = ConstituteImage(size_x, size_y, "I", CharPixel, temp_string_img, &exception);
     free(temp_string_img);
     free(string_img);
-    free(px);
 
-    SyncImagePixels(img);
-    return (img);
+    DestroyImage(img);
+    SyncImagePixels(threshold_img);
+    return (threshold_img);
 }
 
 Image       *maximum_contrast_image(Image *img)
 {
     NormalizeImage(img);
+    SyncImagePixels(img);
     return (img);
 }
 
 Image       *blur_image(Image *img, double radius, double range)
 {
-    Image *new_img;
+    Image           *blur_img = NULL;
     ExceptionInfo	exception;
     GetExceptionInfo(&exception);
-    
-    new_img =BlurImageChannel(img, AllChannels, radius, range, &exception);
+
+    blur_img = BlurImageChannel(img, AllChannels, radius, range, &exception);
+
     DestroyImage(img);
-    SyncImage(new_img);
-    return (new_img);
+    SyncImagePixels(blur_img);
+    return (blur_img);
 }
 
 Image       *subtract_image(Image *canvas_image, Image *img)
 {
-    CompositeImage(img, CopyBlackCompositeOp, canvas_image, 0, 0); 
-
-    //SyncImagePixels(img);
+    CompositeImage(img, CopyBlackCompositeOp, canvas_image, 0, 0);
+    SyncImagePixels(img);
     return (img);
 }
 
@@ -240,20 +248,33 @@ Image       *unsharp_mask_image(Image *img, double sigma, double amount)
     GetExceptionInfo(&exception);
      
     new_img = UnsharpMaskImage(img, 0, sigma, amount, 0.03, &exception);
+    DestroyImage(img);
     return (new_img);
 }
 
 Image       *deconstruction(Image *img){
-    
     ExceptionInfo	exception;
     GetExceptionInfo(&exception);
     
     DeconstructImages(img, &exception);
+    SyncImagePixels(img);
     return (img);
 }
 
-Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur){
+Image       *reduce_noice(Image *img){
     Image *new_img = NULL;
+    ExceptionInfo	exception;
+    GetExceptionInfo(&exception);
+    
+    new_img = ReduceNoiseImage(img, 1, &exception);
+    DestroyImage(img);
+    SyncImagePixels(new_img);
+    return (new_img);
+}
+
+
+Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur){
+    Image           *new_img = NULL;
     ExceptionInfo	exception;
     GetExceptionInfo(&exception);
     
@@ -262,6 +283,7 @@ Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes f
     
     new_img = ResizeImage(img, re_columns, re_rows, filter, blur, &exception);
     DestroyImage(img);
+    SyncImagePixels(new_img);
     return (new_img);
 }
 

@@ -106,7 +106,7 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
+#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/blockface/NEF/"
 #define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/"
@@ -124,11 +124,12 @@ for dcraw decoding with command="/opt/local/bin/"
 /*      functions.c     */
 void        restocking(char *path, int start_slide, int end_slide, char *output_path);
 void        image_processing(char *path, char *output_path);
+void        image_correction(char *path, char *output_path);
 
 /*      max_contract.c  */
 Image		*get_image_from_path(char *path);
 Image       *transparent_image(Image *img);
-Image       *crop_image(Image *img, char *path);
+Image       *crop_image(Image *img, char *path, int image_width, int image_height, int width_offset, int height_offset);
 Image		*get_grayscale_image(Image *img);
 Image       *get_threshold_image(Image *img, c_threshold *c);
 Image       *maximum_contrast_image(Image *img);
@@ -139,13 +140,9 @@ Image       *edge_image(Image *img);
 Image       *unsharp_mask_image(Image *img, double sigma, double amount);
 Image       *dump_his_image(Image *img, int *histogram, c_image_args *a);
 Image       *deconstruction(Image *img);
+Image       *reduce_noice(Image *img);
 Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur);
 int   		dump_image(Image *img, char *root_path, char *name, char *image_type);
-
-#define IMAGE_WIDTH 2100
-#define IMAGE_HEIGHT 3500
-#define IMAGE_WIDTH_OFFSET 2500
-#define IMAGE_HEIGHT_OFFSET 1500
 
 /*      histogram.c     */
 int		*create_histogram(Image *img, c_image_args *a);
@@ -193,7 +190,7 @@ Image    *close_area(Image *image);
 /*      reconstruction.c    */
 unsigned char   *yz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy_width);
 unsigned char   *xz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy_width);
-Image           *get_avg_pixel(Image *f_img, Image *s_img, Image *t_img);
+Image           *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *third_img);
 Image           *yz_final_construct(c_zdimension *z);
 Image           *xz_final_construct(c_zdimension *z);
 #endif

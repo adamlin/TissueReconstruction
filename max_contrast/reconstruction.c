@@ -39,6 +39,14 @@ unsigned char *yz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy
     
     while (y < height) {
         for (int i = z->pixel_count_slide_start; i<= z->pixel_count_slide_end; i++) {
+            z->yz_pixel_map[(new_width * y) + i] = BLACK;
+        }
+        y++;
+    }
+    y = 0;
+    
+    while (y < height) {
+        for (int i = z->pixel_count_slide_start; i<= z->pixel_count_slide_end; i++) {
             z->yz_pixel_map[(new_width * y) + i] = (char)px[(width * y) + i_px].green;
         }
         y++;
@@ -64,6 +72,13 @@ unsigned char *xz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy
     z->xz_count_slide ++ ; // count how many slide in brain tissue
     z->xz_pixel_count_slide_end = z->xz_count_slide * copy_width;
     
+    while (x < width) {
+        for (int j = z->xz_pixel_count_slide_start; j <= z->xz_pixel_count_slide_end; j++) {
+            z->xz_pixel_map[(z->x_dec * j) + x] = BLACK;
+        }
+        x++;
+    }
+    x = 0;
     while (x < width) {
         for (int j = z->xz_pixel_count_slide_start; j <= z->xz_pixel_count_slide_end; j++) {
             z->xz_pixel_map[(z->x_dec * j) + x] = (char)px[(width * i_px) + x].green;
@@ -98,48 +113,44 @@ Image   *xz_final_construct(c_zdimension *z){
 }
 
 /* look through 3 images before and after for pixel comparsion! */
-Image   *get_avg_pixel(Image *f_img, Image *s_img, Image *t_img){
-    Image           *new_images;
+Image   *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *third_img){
+    Image           *new_img;
+    unsigned char   *pixel_map = malloc(img->columns * img->rows * sizeof(*pixel_map));
+    unsigned int    x = 0, y = 0;
+    unsigned int    i = 0;
+    int             width = (int)img->columns;
+    int             height = (int)img->rows;
+    PixelPacket     *f_px = GetImagePixels(first_img, 0, 0, first_img->columns, first_img->rows);
+    PixelPacket     *s_px = GetImagePixels(second_img, 0, 0, second_img->columns, second_img->rows);
+    PixelPacket     *t_px = GetImagePixels(third_img, 0, 0, third_img->columns, third_img->rows);
+    
     ExceptionInfo	exception;
-    unsigned char   *pixel_map = malloc(f_img->columns * f_img->rows * sizeof(*pixel_map));
-    unsigned int    x = 0;
-    unsigned int    y = 0;
-    int             width = (int)f_img->columns;
-    int             height = (int)f_img->rows;
-    PixelPacket     *f_px, *s_px, *t_px;
-    
     GetExceptionInfo(&exception);
-    
-    f_px = GetImagePixels(f_img, 0, 0, f_img->columns, f_img->rows);
-    s_px = GetImagePixels(s_img, 0, 0, s_img->columns, s_img->rows);
-    t_px = GetImagePixels(t_img, 0, 0, t_img->columns, t_img->rows);
     
     while (y < height) {
         x = 0;
         while (x < width) {
-            int i = (f_px[(width * y) + x].green + t_px[(width * y) + x].green)/2;
-            /*
-            if (i < (s_px[(width * y) + x].green) && i > (t_px[(width * y) + x].green) ) {
-                pixel_map[(width * y) + x] = s_px[(width * y) + x].green;
-            }
-             */
-            if ((s_px[(width * y) + x].green - 5) > i && i < (s_px[(width * y) + x].green + 5) ) {
-                //printf("first:%i | second:%i | thrid:%i\n",f_px[(width * y) + x].green , s_px[(width * y) + x].green, t_px[(width * y) + x].green);
+            i = ((int)f_px[(width * y) + x].green + (int)t_px[(width * y) + x].green)/2;
+            
+            if(i > (int)t_px[(width * y) + x].green + 5 || i > (int)f_px[(width * y) + x].green + 5)
+                pixel_map[(width * y) + x] =  (char)s_px[(width * y) + x].green;
+            else if ((int)s_px[(width * y) + x].green > i && i < (int)s_px[(width * y) + x].green)
                 pixel_map[(width * y) + x] = i;
-                //printf("final:%i \n",i);
-            }
             else
-                pixel_map[(width * y) + x] = s_px[(width * y) + x].green;
+                pixel_map[(width * y) + x] = (char)s_px[(width * y) + x].green;
             x++;
         }
         y++;
     }
     
-    new_images = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
-
+    DestroyImage(img);
+    DestroyImage(first_img);
+    DestroyImage(second_img);
+    DestroyImage(third_img);
+    
+    
+    new_img = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
     free(pixel_map);
-    DestroyImage(f_img);
-    DestroyImage(s_img);
-    DestroyImage(t_img);
-    return new_images;
+    SyncImagePixels(new_img);
+    return (new_img);
 }

@@ -25,7 +25,7 @@
 */
 #include "max_contrast.h"
 
-char* otsu_th(int x_size1, int y_size1, char *image1, c_threshold *c)
+char    *otsu_th(int x_size1, int y_size1, char *image1, c_threshold *c)
 {
     int     x_size2, y_size2;
     char    *image2 = malloc(x_size1 * y_size1 * sizeof(*image2));

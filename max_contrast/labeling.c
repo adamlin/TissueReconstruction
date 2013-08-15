@@ -66,7 +66,7 @@ char        get_neighborpixcel(unsigned char *pixel_map, int x, int y, int width
 
 Image   *get_blur_maked(Image *img, c_image *c)
 {
-    Image           *new_img;
+    Image           *maked_img;
     static  unsigned short    color = 0;
     unsigned int    x = 0;
     unsigned int    y = 0;
@@ -83,12 +83,11 @@ Image   *get_blur_maked(Image *img, c_image *c)
     GetExceptionInfo(&exception);
     
     px = GetImagePixels(img, 0, 0, img->columns, img->rows);
-      
+    
     while (y < height) {
         x = 0;
         while (x < width) {
             pixel_map[(width * y) + x] = (char)px[(width * y) + x].green;
-            c->label_map[(width * y) + x] = 0;
             x++;
         }
         y++;
@@ -112,12 +111,14 @@ Image   *get_blur_maked(Image *img, c_image *c)
         }
         y++;
      }
-    new_img = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
+    maked_img = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
+    
     free(c->label_map);
     free(pixel_map);
     DestroyImage(img);
-    SyncImage(new_img);
-    return (new_img);
+    SyncImagePixels(maked_img);
+    
+    return (maked_img);
 }
 
 
@@ -182,6 +183,7 @@ Image   *crop_area_selected(Image *img)
     }
     final_images = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
     free(pixel_map);
+    DestroyImage(img);
     return (final_images);
 }
 
@@ -212,5 +214,6 @@ Image   *crop_masked_final_image(Image *org_img, Image *mask_img)
         }
         y++;
     }
+    DestroyImage(mask_img);
     return (org_img);
 }
