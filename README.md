@@ -27,7 +27,7 @@ The reconstruction functions are located in /max_contrast/function.c under the n
 
 ## Restocked Example Images
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200> 
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=200 HEIGHT=400>
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
 ## Compilation
 
 This software can be compiled under Linux or Mac OSX; however, the current development has only been tested in Mac OSX.
