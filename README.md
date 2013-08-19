@@ -34,7 +34,7 @@ The reconstruction functions are located in /max_contrast/function.c under the n
 <BR/> 
 Fig. 2. Alignment of histological slices. To illustrate the alignment of slices through the image processing, 
 a 3D stack of unaligned and aligned tissue images are presented in the horizontal and sagittal plane. The 
-geometry and smoothness of the brain shape was improved. Left image is x-z dimension on y 700 deep height and right 
+geometry and smoothness of the brain shape was improved. First image is x-z dimension on y 700 deep height and second 
 image is y-z dimension on x 850 deep width.
 ## Compilation
 
