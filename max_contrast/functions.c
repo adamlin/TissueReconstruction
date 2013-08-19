@@ -81,11 +81,11 @@ void restocking(char *path, int start_slide, int end_slide, char *output_path)
         }
         yz_img = yz_final_construct(z);
         yz_img = resize_image(yz_img, z->z_dec * 6, z->y_dec, BoxFilter, 0.5);        
-        yz_img = reduce_noice(yz_img);
+        //yz_img = reduce_noice(yz_img);
         
         xz_img = xz_final_construct(z);
         xz_img = resize_image(xz_img, z->x_dec, z->z_dec * 6, BoxFilter, 0.5);
-        xz_img = reduce_noice(xz_img);
+        //xz_img = reduce_noice(xz_img);
         
         asprintf(&name, "%s%i", "yz_image_r", f);
         dump_image(yz_img, output_path,name,"jpg");
@@ -120,6 +120,7 @@ void image_processing(char *path, char *output_path)
     char            *save_first_path   = NULL;
     char            *save_second_path  = NULL;
     char            *save_third_path   = NULL;
+    double          *ssum;
     
     if (NULL == (FD = opendir(FILE_PATH)))
     {
@@ -128,11 +129,12 @@ void image_processing(char *path, char *output_path)
         return;
     }
     
-    c_histogram     *c  = malloc(sizeof(*c));
-    c_image_args    *a  = malloc(sizeof(*a));
-    c_threshold     *t  = malloc(sizeof(*t));
-    c_image         *e  = malloc(sizeof(*e));
-    c_zdimension    *z  = malloc(sizeof(*z));
+    c_histogram         *c  = malloc(sizeof(*c));
+    c_image_args        *a  = malloc(sizeof(*a));
+    c_threshold         *t  = malloc(sizeof(*t));
+    c_image             *e  = malloc(sizeof(*e));
+    c_zdimension        *z  = malloc(sizeof(*z));
+    c_cross_correlation *b  = malloc(sizeof(*b));
     
     c->first_his_val    = NULL;
     c->sec_his_val      = NULL;
@@ -169,6 +171,7 @@ void image_processing(char *path, char *output_path)
             third_img = get_image_from_path(save_third_path);
             
             final_img = get_avg_pixel(final_img, first_img, second_img, third_img);
+            ssum = cross_correlation(second_img, third_img, b); // cross correlation  - TODO: move pixel to right position.
             
             save_first_path = save_second_path;
             save_second_path = save_third_path;
@@ -217,6 +220,7 @@ void image_processing(char *path, char *output_path)
     free(c);
     free(e);
     free(z);
+    free(b);
     return;
 }
 
@@ -234,6 +238,10 @@ void image_correction(char *path, char *output_path){
         free(FD);
         return;
     }
+    
+    c_threshold *t   = malloc(sizeof(*t));
+    
+    t->max_threshold = 10;
     
     while ((in_file = readdir(FD)))
     {
@@ -255,10 +263,13 @@ void image_correction(char *path, char *output_path){
         
         // crop image before reconstruction （IMAGE_WIDTH, IMAGE_HEIGHT, WIDTH_OFFSET, HEIGHT_OFFSET)
         //final_img = crop_image(final_img, imageName, 1200, 1600, 3850, 1960); //brain_2
-        final_img = crop_image(final_img, imageName, 1727, 1575, 2450, 1850); //blockface 08.05.2013
+        //final_img = crop_image(final_img, imageName, 1727, 1575, 2450, 1850); //blockface 08.05.2013
+        final_img = edge_image(final_img);
+
         dump_image(final_img, output_path, in_file->d_name , "jpeg");
     }
     closedir(FD);
+    free(t);
     return;
     
 }

@@ -17,6 +17,7 @@
 		66ED06701772C67200FBF61B /* edgelap.c in Sources */ = {isa = PBXBuildFile; fileRef = 66ED066F1772C67200FBF61B /* edgelap.c */; };
 		66F1F61817B47BDC009523B7 /* max_contrast.c in Sources */ = {isa = PBXBuildFile; fileRef = 66F1F61017B479B4009523B7 /* max_contrast.c */; };
 		66F1F61917B47BED009523B7 /* otsu_th.c in Sources */ = {isa = PBXBuildFile; fileRef = 66F1F61117B479B4009523B7 /* otsu_th.c */; };
+		66F1F62417BDD809009523B7 /* corss_correlation.c in Sources */ = {isa = PBXBuildFile; fileRef = 66F1F62317BDD809009523B7 /* corss_correlation.c */; };
 		85D91351177412E1003E2C97 /* histogram.c in Sources */ = {isa = PBXBuildFile; fileRef = 85D91350177412E1003E2C97 /* histogram.c */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		66F1F61017B479B4009523B7 /* max_contrast.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = max_contrast.c; sourceTree = "<group>"; };
 		66F1F61117B479B4009523B7 /* otsu_th.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = otsu_th.c; sourceTree = "<group>"; };
 		66F1F61217B479B4009523B7 /* typedef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
+		66F1F62317BDD809009523B7 /* corss_correlation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = corss_correlation.c; sourceTree = "<group>"; };
 		85D91350177412E1003E2C97 /* histogram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = histogram.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				6699A55617939C4300A8157F /* close_area.c */,
 				6699A580179E606C00A8157F /* reconstruction.c */,
 				669E409517A786F900AFF18E /* functions.c */,
+				66F1F62317BDD809009523B7 /* corss_correlation.c */,
 			);
 			path = max_contrast;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				669E409617A786F900AFF18E /* functions.c in Sources */,
 				66F1F61817B47BDC009523B7 /* max_contrast.c in Sources */,
 				66F1F61917B47BED009523B7 /* otsu_th.c in Sources */,
+				66F1F62417BDD809009523B7 /* corss_correlation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

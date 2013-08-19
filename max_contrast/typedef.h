@@ -25,4 +25,5 @@ typedef struct	s_image_args		c_image_args;
 typedef struct	s_threshold         c_threshold;
 typedef struct  s_image             c_image;
 typedef struct  s_zdimension        c_zdimension;
+typedef struct  s_cross_correlation c_cross_correlation;
 #endif

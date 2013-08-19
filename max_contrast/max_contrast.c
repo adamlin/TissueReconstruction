@@ -233,11 +233,14 @@ Image       *contrast_image(Image *img, int contrast)
 
 Image       *edge_image(Image *img)
 {
+    Image           *new_image = NULL;
     ExceptionInfo	exception;
     
     GetExceptionInfo(&exception);
-    img = EdgeImage(img, 5, &exception);
-    return (img);
+    new_image = EdgeImage(img, 5, &exception);
+    DestroyImage(img);
+    SyncImagePixels(new_image);
+    return (new_image);
 }
 
 Image       *unsharp_mask_image(Image *img, double sigma, double amount)

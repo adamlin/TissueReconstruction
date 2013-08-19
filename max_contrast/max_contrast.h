@@ -97,6 +97,11 @@ struct      s_zdimension{
     unsigned char *xz_pixel_map;
 };
 
+struct      s_cross_correlation{
+    double ssum;
+    double dif_sum;
+};
+
 
 /*      main           */
 
@@ -106,7 +111,7 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/blockface/NEF/"
+#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/blockface/JPEG/"
 #define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/"
@@ -193,5 +198,8 @@ unsigned char   *xz_reconstruction(Image *img, c_zdimension *z, int i_px, int co
 Image           *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *third_img);
 Image           *yz_final_construct(c_zdimension *z);
 Image           *xz_final_construct(c_zdimension *z);
+
+/*      corss_correlation.c    */
+double          *cross_correlation(Image *first_img, Image *second_img, c_cross_correlation *b);
 #endif
 

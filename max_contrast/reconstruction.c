@@ -144,10 +144,7 @@ Image   *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *t
     }
     
     DestroyImage(img);
-    DestroyImage(first_img);
-    DestroyImage(second_img);
-    DestroyImage(third_img);
-    
+    DestroyImage(first_img);    
     
     new_img = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
     free(pixel_map);
