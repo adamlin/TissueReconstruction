@@ -3,10 +3,12 @@ TissueReconstruction
 
 TissueReconstruction is a new technique for reconstruction of serial histological sections from mouse brains.
 TissueReconstruction has been written in C and it wrap graphicsmagick and ITK with new functionalities to reconstruct brain tissue images. 
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/slides.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/slides.jpg" ALT="restocking1" WIDTH=300 HEIGHT=200>
+<BR/>
+Creating a 3D image volume by registering 2D histological slices (x, y, z). The slice order relative to the fixed 
+reference slice.
 ## Environment
 TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /max_contrast/. Other directories are system generated for building active architecture.
-
 Building Settings in Xcode:
 
     Install libraries using macport: graphicmagick, ITK (Insight Segmentation and Registration Toolkit)
@@ -28,7 +30,11 @@ The reconstruction functions are located in /max_contrast/function.c under the n
 ## Reconstruction Images Example:
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200> 
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
-<BR/> left image is x-z dimension on y 700 deep height and right image is y-z dimension on x 850 deep width.
+<BR/> 
+Fig. 2. Alignment of histological slices. To illustrate the alignment of slices through the image processing, 
+a 3D stack of unaligned and aligned tissue images are presented in the horizontal and sagittal plane. The 
+geometry and smoothness of the brain shape was improved. Left image is x-z dimension on y 700 deep height and right 
+image is y-z dimension on x 850 deep width.
 ## Compilation
 
 This software can be compiled under Linux or Mac OSX; however, the current development has only been tested in Mac OSX.
