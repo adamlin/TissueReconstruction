@@ -26,8 +26,8 @@ The reconstruction functions are located in /max_contrast/function.c under the n
     image_processing (FILE_PATH) => max contrast, masking, deconstruction, resizing …….
 
 ## Restocked Example Images
-    (https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg)
-    (https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg)
+https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg
+https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg
 ## Compilation
 
 This software can be compiled under Linux or Mac OSX; however, the current development has only been tested in Mac OSX.
