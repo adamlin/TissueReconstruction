@@ -3,9 +3,9 @@ TissueReconstruction
 
 TissueReconstruction is a new technique for reconstruction of serial histological sections from mouse brains.
 TissueReconstruction has been written in C and it wrap graphicsmagick and ITK with new functionalities to reconstruct brain tissue images. 
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/slides.jpg" ALT="restocking1" WIDTH=300 HEIGHT=200 align="middle">
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/slides.jpg" ALT="restocking1" WIDTH=300 HEIGHT=200 ALIGN="center">
 <BR/>
-Creating a 3D image volume by registering 2D histological slices (x, y, z). The slice order relative to the fixed 
+Fig. 1. Creating a 3D image volume by registering 2D histological slices (x, y, z). The slice order relative to the fixed 
 reference slice.
 ## Environment
 TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /max_contrast/. Other directories are system generated for building active architecture.
