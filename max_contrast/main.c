@@ -32,8 +32,8 @@ int		main()
 {
     InitializeMagick("/");
     //restocking(FILE_PATH, 850, 960, FILE_CON_OUTPUT);
-    image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction(FILE_PATH, FILE_MAX_OUTPUT);
+    //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
+    image_correction(FILE_PATH, FILE_MAX_OUTPUT);
     DestroyMagick();
     return (0);
 }

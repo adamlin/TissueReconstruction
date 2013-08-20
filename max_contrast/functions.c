@@ -170,7 +170,8 @@ void image_processing(char *path, char *output_path)
             second_img = get_image_from_path(save_second_path);
             third_img = get_image_from_path(save_third_path);
             
-            final_img = get_avg_pixel(final_img, first_img, second_img, third_img);
+            //final_img = get_avg_pixel(final_img, first_img, second_img, third_img);
+            DestroyImage(first_img);
             ssum = cross_correlation(second_img, third_img, b); // cross correlation  - TODO: move pixel to right position.
             
             save_first_path = save_second_path;
@@ -264,7 +265,7 @@ void image_correction(char *path, char *output_path){
         // crop image before reconstruction （IMAGE_WIDTH, IMAGE_HEIGHT, WIDTH_OFFSET, HEIGHT_OFFSET)
         //final_img = crop_image(final_img, imageName, 1200, 1600, 3850, 1960); //brain_2
         //final_img = crop_image(final_img, imageName, 1727, 1575, 2450, 1850); //blockface 08.05.2013
-        final_img = edge_image(final_img);
+        final_img = get_threshold_image(final_img, t);
 
         dump_image(final_img, output_path, in_file->d_name , "jpeg");
     }

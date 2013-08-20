@@ -111,7 +111,7 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/blockface/JPEG/"
+#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/temp2/"
 #define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/"
