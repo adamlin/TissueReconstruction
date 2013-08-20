@@ -30,8 +30,8 @@ The reconstruction functions are located in /max_contrast/function.c under the n
 
     Please also motify FILE_PATHS in max_contrast.h to locate current brain tissue files
 ## Reconstruction Images Example:
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200> 
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=300 HEIGHT=150> 
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=300 HEIGHT=150>
 <BR/> 
 Fig. 2. Alignment of histological slices. To illustrate the alignment of slices through the image processing, 
 a 3D stack of unaligned and aligned tissue images are presented in the horizontal and sagittal plane. The 
