@@ -24,11 +24,11 @@ Build Phases in Xcode:
 
 The reconstruction functions are located in /max_contrast/function.c under the name of: 
 
-    restocking (FILE_PATH)  =>  image restocking
+    restocking (FILE_PATH, OUTPUT_PATH)  =>  image restocking
 
-    image_processing (FILE_PATH) => max contrast, masking, deconstruction, resizing …….
+    image_processing (FILE_PATH, OUTPUT_PATH) => max contrast, masking, deconstruction, resizing …….
 
-    Please also mofify FILE_PATHS in max_contrast.h to locate current brain tissue files
+    Please also motify FILE_PATHS in max_contrast.h to locate current brain tissue files
 ## Reconstruction Images Example:
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200> 
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
