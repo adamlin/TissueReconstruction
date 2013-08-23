@@ -17,32 +17,26 @@
  **
  */
 
-/*
- ** -- need following libraries to make this reconstruction works --
- ** "graphicmagick"
- ** "ITK" (Insight Segmentation and Registration Toolkit)
- ** "Dcraw"
- */
+#ifndef max_contrast_convert_raw_h
+#define max_contrast_convert_raw_h
 
-#define _GNU_SOURCE
+#include <sys/stat.h>
 
-#include "max_contrast.h"
 
-int		main()
+typedef struct	s_header	t_header;
+
+struct			s_header
 {
-    InitializeMagick("/");
-    restocking(FILE_PATH, 0, 1600, FILE_CON_OUTPUT);
-    //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction(FILE_PATH, FILE_MAX_OUTPUT);
-    DestroyMagick();
-    return (0);
-}
+    int                 dim_nb;
+    unsigned int		*sizes;
+    double              *start;
+    double              *steps;
+    char                **dim_name;
+    unsigned long long int	*dim_offset;
+    unsigned int            *slice_size;
+    unsigned int            slice_max;
+};
 
 
-/* main used for argv[] */
-/*
-int     main(int argc, char *argv[])
-{
+#endif /* __MINC_TOOL_CORE__ */
 
-}
-*/

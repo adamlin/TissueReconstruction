@@ -21,7 +21,7 @@
 
 void restocking(char *path, int start_slide, int end_slide, char *output_path)
 {
-    Image           *img, *yz_img, *xz_img;
+    Image           *img, *yz_img, *xz_img, *angel_img;
     int             f = start_slide;
     DIR             *FD;
     struct dirent   *in_file;
@@ -47,15 +47,20 @@ void restocking(char *path, int start_slide, int end_slide, char *output_path)
     t->max_threshold  = 128;
     
     while (f < end_slide) {
-        z->z_dec                        = scandir(FILE_PATH, &namelist, 0, alphasort);
-        z->count_slide                  = 0;
-        z->pixel_count_slide_start      = 1;
-        z->pixel_count_slide_end        = 0;
-        z->xz_count_slide               = 0;
-        z->xz_pixel_count_slide_start   = 1;
-        z->xz_pixel_count_slide_end     = 0;
-        z->yz_pixel_map                 = NULL;
-        z->xz_pixel_map                 = NULL;
+        z->z_dec                            = scandir(FILE_PATH, &namelist, 0, alphasort);
+        z->count_slide                      = 0;
+        z->pixel_count_slide_start          = 1;
+        z->pixel_count_slide_end            = 0;
+        z->xz_count_slide                   = 0;
+        z->xz_pixel_count_slide_start       = 1;
+        z->xz_pixel_count_slide_end         = 0;
+        //z->angel_count_slide                = 0;
+        //z->angel_pixel_count_slide_end      = 0;
+        //z->angel_pixel_count_slide_start    = 1;
+        
+        z->yz_pixel_map                     = NULL;
+        z->xz_pixel_map                     = NULL;
+        //z->angel_pixel_map                  = NULL;
         
         FD = opendir(FILE_PATH);
         printf("restocking..............\n");
@@ -73,19 +78,26 @@ void restocking(char *path, int start_slide, int end_slide, char *output_path)
             img = get_image_from_path(imagePath);
             img = get_grayscale_image(img);
 
-            z->yz_pixel_map = yz_reconstruction(img, z, f, 1);
-            z->xz_pixel_map = xz_reconstruction(img, z, f, 1);
+            z->yz_pixel_map     = yz_reconstruction(img, z, f);
+            z->xz_pixel_map     = xz_reconstruction(img, z, f);
+            //z->angel_pixel_map  = angel_reconstruction(img, z, f, 45);
             
             DestroyImage(img);
             free(imagePath);
         }
         yz_img = yz_final_construct(z);
         yz_img = resize_image(yz_img, z->z_dec * 6, z->y_dec, BoxFilter, 0.5);        
-        //yz_img = reduce_noice(yz_img);
+        yz_img = reduce_noice(yz_img);
         
         xz_img = xz_final_construct(z);
         xz_img = resize_image(xz_img, z->x_dec, z->z_dec * 6, BoxFilter, 0.5);
-        //xz_img = reduce_noice(xz_img);
+        xz_img = reduce_noice(xz_img);
+        
+        /*
+        angel_img = angel_final_construct(z);
+        angel_img = resize_image(angel_img, z->ax_dec, z->z_dec * 6, BoxFilter, 0.5);
+        angel_img = reduce_noice(angel_img);
+        */
         
         asprintf(&name, "%s%i", "yz_image_r", f);
         dump_image(yz_img, output_path,name,"jpg");
@@ -95,9 +107,14 @@ void restocking(char *path, int start_slide, int end_slide, char *output_path)
         dump_image(xz_img, output_path,name,"jpg");
         printf("restocked slide: %s\n", name);
         
+        //asprintf(&name, "%s%i", "angel_image_r", f);
+        //dump_image(angel_img, output_path,name,"jpg");
+        //printf("restocked slide: %s\n", name);
+        
         closedir(FD);
-        z->yz_pixel_map = NULL;
-        z->xz_pixel_map = NULL;
+        z->yz_pixel_map     = NULL;
+        z->xz_pixel_map     = NULL;
+        //z->angel_pixel_map  = NULL;
         f++;
     }
     free(a);

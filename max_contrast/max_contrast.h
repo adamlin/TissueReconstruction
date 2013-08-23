@@ -86,22 +86,29 @@ struct      s_zdimension{
     int xz_pixel_count_slide_end;
     int xz_pixel_count_slide_start;
     
+    
+    int angel_count_slide;
+    int angel_pixel_count_slide_end;
+    int angel_pixel_count_slide_start;
+    
     int pixel_width;
     int pixel_height;
     int x_dec;
     int y_dec;
     int z_dec;
     int p_dec;
+    int ax_dec;
+    int ay_dec;
     
     unsigned char *yz_pixel_map;    
     unsigned char *xz_pixel_map;
+    unsigned char *angel_pixel_map;
 };
 
 struct      s_cross_correlation{
     double ssum;
     double dif_sum;
 };
-
 
 /*      main           */
 
@@ -111,10 +118,10 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/temp2/"
+#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/brain_3_gray/"
 #define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
 #define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
-#define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/"
+#define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/brain_3_complele/"
 #define FILE_MAX_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zMaxOutput/"
 #define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his_txt/"
 
@@ -193,13 +200,20 @@ Image    *close_area(Image *image);
 #define FILL_COLOR ( (IS_8BIT_DEPTH == 1) ? 200 : (int)(((double)200 / 255) * 65535) )
 
 /*      reconstruction.c    */
-unsigned char   *yz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy_width);
-unsigned char   *xz_reconstruction(Image *img, c_zdimension *z, int i_px, int copy_width);
+unsigned char   *yz_reconstruction(Image *img, c_zdimension *z, int i_px);
+unsigned char   *xz_reconstruction(Image *img, c_zdimension *z, int i_px);
+unsigned char   *angel_reconstruction(Image *img, c_zdimension *z, int i_px, double angel);
 Image           *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *third_img);
 Image           *yz_final_construct(c_zdimension *z);
 Image           *xz_final_construct(c_zdimension *z);
+Image           *angel_final_construct(c_zdimension *z);
+
+#define PI 3.14159265
+#define DR 0.0174532925
 
 /*      corss_correlation.c    */
 double          *cross_correlation(Image *first_img, Image *second_img, c_cross_correlation *b);
+#define SQR2(x) ((x) * (x))
+
 #endif
 
