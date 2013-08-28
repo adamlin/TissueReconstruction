@@ -12,7 +12,6 @@
 		669BBD1F17CDC18500492932 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD1217CDC18500492932 /* main.c */; };
 		669BBD3117CDC25000492932 /* area.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2517CDC23A00492932 /* area.c */; };
 		669BBD3217CDC25700492932 /* close_area.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2617CDC23A00492932 /* close_area.c */; };
-		669BBD3317CDC25A00492932 /* convert_raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2717CDC23A00492932 /* convert_raw.c */; };
 		669BBD3417CDC26100492932 /* corss_correlation.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2917CDC23A00492932 /* corss_correlation.c */; };
 		669BBD3517CDC26300492932 /* edgelap.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2A17CDC23A00492932 /* edgelap.c */; };
 		669BBD3617CDC26600492932 /* histogram.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2B17CDC23A00492932 /* histogram.c */; };
@@ -45,8 +44,6 @@
 		669BBD1217CDC18500492932 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = tissuereconstruction/main.c; sourceTree = SOURCE_ROOT; };
 		669BBD2517CDC23A00492932 /* area.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = area.c; path = tissuereconstruction/core/area.c; sourceTree = SOURCE_ROOT; };
 		669BBD2617CDC23A00492932 /* close_area.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = close_area.c; path = tissuereconstruction/core/close_area.c; sourceTree = SOURCE_ROOT; };
-		669BBD2717CDC23A00492932 /* convert_raw.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = convert_raw.c; path = tissuereconstruction/core/convert_raw.c; sourceTree = SOURCE_ROOT; };
-		669BBD2817CDC23A00492932 /* convert_raw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = convert_raw.h; path = tissuereconstruction/core/convert_raw.h; sourceTree = SOURCE_ROOT; };
 		669BBD2917CDC23A00492932 /* corss_correlation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = corss_correlation.c; path = tissuereconstruction/core/corss_correlation.c; sourceTree = SOURCE_ROOT; };
 		669BBD2A17CDC23A00492932 /* edgelap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = edgelap.c; path = tissuereconstruction/core/edgelap.c; sourceTree = SOURCE_ROOT; };
 		669BBD2B17CDC23A00492932 /* histogram.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = histogram.c; path = tissuereconstruction/core/histogram.c; sourceTree = SOURCE_ROOT; };
@@ -121,8 +118,6 @@
 			children = (
 				669BBD2517CDC23A00492932 /* area.c */,
 				669BBD2617CDC23A00492932 /* close_area.c */,
-				669BBD2717CDC23A00492932 /* convert_raw.c */,
-				669BBD2817CDC23A00492932 /* convert_raw.h */,
 				669BBD2917CDC23A00492932 /* corss_correlation.c */,
 				669BBD2A17CDC23A00492932 /* edgelap.c */,
 				669BBD2B17CDC23A00492932 /* histogram.c */,
@@ -190,7 +185,6 @@
 				669BBD1F17CDC18500492932 /* main.c in Sources */,
 				669BBD3117CDC25000492932 /* area.c in Sources */,
 				669BBD3217CDC25700492932 /* close_area.c in Sources */,
-				669BBD3317CDC25A00492932 /* convert_raw.c in Sources */,
 				669BBD3417CDC26100492932 /* corss_correlation.c in Sources */,
 				669BBD3517CDC26300492932 /* edgelap.c in Sources */,
 				669BBD3617CDC26600492932 /* histogram.c in Sources */,
