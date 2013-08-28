@@ -34,9 +34,9 @@ int		main()
     InitializeMagick("/");
     //restocking(FILE_PATH, 0, 1600, FILE_CON_OUTPUT);
     //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/x/", FILE_MAX_OUTPUT);
-    //check_raw("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/restack3.raw");
-    //dumpStackIntoRawFile("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/restack16.raw");
+    //image_correction("/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/x/", FILE_MAX_OUTPUT);
+    //check_raw(FILE_OUT_RAW);
+    dumpStackIntoRawFile(FILE_XYZ, FILE_OUT_RAW);
     DestroyMagick();
     return (0);
 }

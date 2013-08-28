@@ -28,7 +28,7 @@ struct		s_raw_header
 /*      rawfiles.c      */
 void appendImageBytesToRaw(int fd, char * file);
 void dumpDirectoryContentsIntoRawFile(char *dir, int fd);
-void dumpStackIntoRawFile(char *file);
-
+void dumpStackIntoRawFile(char *file, char *out_file);
+//int		check_raw(char *path);
 
 #endif

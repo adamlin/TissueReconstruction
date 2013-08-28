@@ -21,7 +21,7 @@
 #include "raw_files.h"
 
 
-void appendImageBytesToRaw(int fd, char * file) {
+void    appendImageBytesToRaw(int fd, char * file) {
     Image *img = get_image_from_path(file);
     
     unsigned char   *pixel_map = NULL;
@@ -52,7 +52,7 @@ void appendImageBytesToRaw(int fd, char * file) {
     
 }
 
-void dumpDirectoryContentsIntoRawFile(char *dir, int fd){
+void    dumpDirectoryContentsIntoRawFile(char *dir, int fd){
     struct dirent **namelist;
     char          *imagePath;
     int n;
@@ -83,12 +83,14 @@ void dumpDirectoryContentsIntoRawFile(char *dir, int fd){
     free(namelist);
 }
 
-void dumpStackIntoRawFile(char *file){
-    //open/create file for binary append
-    int fd = -1;
-
-    if ((fd = open(file, (O_CREAT | O_TRUNC | O_RDWR), 0666)) == -1) {
+void    dumpStackIntoRawFile(char *file, char *out_file){
+    char    *filePath;
+    int     x = 1200, y = 1600, z = 840;
+    int     fd = -1;     //open || create file for binary append
+    
+    if ((fd = open(out_file, (O_CREAT | O_TRUNC | O_RDWR), 0666)) == -1) {
         fprintf(stderr, "Open Failed\n");
+        close(fd);
         return;
     }
     
@@ -98,20 +100,21 @@ void dumpStackIntoRawFile(char *file){
     memset(head, '\0', 4096);
     int len = 0;
     
-    /* temp math for slides */
-    int slide_size_x = 840 * 1200;
-    int slide_size_y = 840 * 1600;
-    int slide_size_z = 1600 * 1200;
-    unsigned long long slide_all = 1600 *1200 * 840;
+    /*  temp math for slides    */
+    int slide_size_x = y * z;
+    int slide_size_y = x * z;
+    int slide_size_z = x * y;
+    double start_x = (x / 2) * (-1);
+    double start_y = (y / 2) * (-1);
+    double start_z = (z / 2) * (-1);
+    unsigned long long slide_all = x * y * z;
     unsigned long long slider_all_n = slide_all * 2;
     
-    
-    
-    // first dump header
+    /*  first dump header    */
     sprintf(head, "%i|%i:%i:%i|%g:%g:%g|%g:%g:%g|%s|%s|%s|%c|%c|%c|%i:%i:%i|%i|%llu:%llu:%llu|%i|",
             3,                          //h->dim_nb,
-            840, 1600, 1200,            //h->sizes[0], h->sizes[1], h->sizes[2],
-            -420.0, -800.0, -600.0,     //h->start[0], h->start[1], h->start[2],
+            z, y, x,                    //h->sizes[0], h->sizes[1], h->sizes[2],
+            start_z, start_y, start_x,  //h->start[0], h->start[1], h->start[2],
             1.0,1.0,1.0,                //h->steps[0], h->steps[1], h->steps[2],
             "zspace","yspace","xspace", //h->dim_name[0], h->dim_name[1], h->dim_name[2],
             'z','y','x',                //h->dim_name[0][0], h->dim_name[1][0], h->dim_name[2][0],
@@ -126,15 +129,24 @@ void dumpStackIntoRawFile(char *file){
     write(fd, head, len);
     
     // then dump all dimensions
-    dumpDirectoryContentsIntoRawFile("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/z", fd);
-    dumpDirectoryContentsIntoRawFile("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/y", fd);
-    dumpDirectoryContentsIntoRawFile("/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/restacked_brain_3/x", fd);
-    
-    // close file
+    for (int i = 0 ; i < 3; i++) {
+        if (i == 0) {
+            asprintf(&filePath, "%s%s", file, "z");
+            dumpDirectoryContentsIntoRawFile(filePath, fd);
+        }
+        if (i == 1) {
+            asprintf(&filePath, "%s%s", file, "y");
+            dumpDirectoryContentsIntoRawFile(filePath, fd);
+        }
+        if (i == 2) {
+            asprintf(&filePath, "%s%s", file, "x");
+            dumpDirectoryContentsIntoRawFile(filePath, fd);
+        }
+    }
+    free(filePath);
     close(fd);
 }
 
-/*
 int		check_raw(char *path){
     int		fd;
     char	check[10];
@@ -157,4 +169,3 @@ int		check_raw(char *path){
     printf("%i\n", fd);
     return (fd);
 }
-*/

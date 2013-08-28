@@ -118,12 +118,15 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH "/Users/adam/Documents/Brain BlockFace 28.05.2013/brain_3_gray/"
-#define FILE_GRAY_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
-#define FILE_HISTOGRAM "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his/"
-#define FILE_CON_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zConOutput/brain_3_complele/"
-#define FILE_MAX_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/zMaxOutput/"
-#define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/Brain BlockFace 28.05.2013/gray_his_txt/"
+#define FILE_PATH           "/Users/adam/Documents/blockface_allbrains/brain_3_gray/"
+#define FILE_GRAY_OUTPUT    "/Users/adam/Documents/blockface_allbrains/gray_his/"
+#define FILE_HISTOGRAM      "/Users/adam/Documents/blockface_allbrains/gray_his/"
+#define FILE_CON_OUTPUT     "/Users/adam/Documents/blockface_allbrains/zConOutput/brain_3_complele/"
+#define FILE_MAX_OUTPUT     "/Users/adam/Documents/blockface_allbrains/zMaxOutput/"
+#define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/blockface_allbrains/gray_his_txt/"
+
+#define FILE_XYZ            "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/"
+#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack17.raw"
 
 /*      for home used   */
 /*
@@ -215,6 +218,7 @@ Image           *angel_final_construct(c_zdimension *z);
 /*      corss_correlation.c    */
 double          *cross_correlation(Image *first_img, Image *second_img, c_cross_correlation *b);
 #define SQR2(x) ((x) * (x))
+
 
 
 #endif
