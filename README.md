@@ -9,7 +9,7 @@ TissueReconstruction has been written in C and it wrap graphicsmagick and ITK wi
 Fig. 1. Creating a 3D image volume by registering 2D histological slices (x, y, z). The slice order relative to the fixed 
 reference slice.
 ## Environment
-TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /max_contrast/. Other directories are system generated for building active architecture.
+TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /tissuereconstruction/. Other directories are system generated for building active architecture.
 Building Settings in Xcode:
 
     Install libraries using macport: graphicmagick, ITK (Insight Segmentation and Registration Toolkit)
@@ -22,13 +22,13 @@ Build Phases in Xcode:
 
     Include Link Binary With Libraries: libGraphicsMagick.3.dylib
 
-The reconstruction functions are located in /max_contrast/function.c under the name of: 
+The reconstruction functions are located in /tissuereconstruction/function.c under the name of: 
 
     restocking (FILE_PATH, OUTPUT_PATH)  =>  image restocking
 
     image_processing (FILE_PATH, OUTPUT_PATH) => max contrast, masking, deconstruction, resizing …….
 
-    Please also motify FILE_PATHS in max_contrast.h to locate current brain tissue files
+    Please also modify FILE_PATHS in /tissuereconstruction/header/max_contrast.h to locate current brain tissue files
 ## Reconstruction Images Example:
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200> 
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=400 HEIGHT=200>
