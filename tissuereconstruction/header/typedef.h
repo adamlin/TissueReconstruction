@@ -17,32 +17,14 @@
  **
  */
 
-/*
- ** -- need following libraries to make this reconstruction works --
- ** "graphicmagick"
- ** "ITK" (Insight Segmentation and Registration Toolkit)
- ** "Dcraw"
- */
+#ifndef max_contrast_typedef_h
+#define max_contrast_typedef_h
 
-#define _GNU_SOURCE
-
-#include "max_contrast.h"
-
-int		main()
-{
-    InitializeMagick("/");
-    restocking(FILE_PATH, 0, 1600, FILE_CON_OUTPUT);
-    //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction(FILE_PATH, FILE_MAX_OUTPUT);
-    DestroyMagick();
-    return (0);
-}
-
-
-/* main used for argv[] */
-/*
-int     main(int argc, char *argv[])
-{
-
-}
-*/
+typedef struct	s_histogram			c_histogram;
+typedef struct	s_image_args		c_image_args;
+typedef struct	s_threshold         c_threshold;
+typedef struct  s_image             c_image;
+typedef struct  s_zdimension        c_zdimension;
+typedef struct  s_cross_correlation c_cross_correlation;
+typedef struct  s_raw_header        c_raw_header;
+#endif

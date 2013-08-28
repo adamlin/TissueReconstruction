@@ -190,7 +190,6 @@ Image   *crop_area_selected(Image *img)
 
 Image   *crop_masked_final_image(Image *org_img, Image *mask_img)
 {
-    Image           *final_image;
     unsigned int    x = 0;
     unsigned int    y = 0;
     int             width = (int)org_img->columns;

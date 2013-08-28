@@ -1,0 +1,335 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6699A576179667BB00A8157F /* libGraphicsMagick.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6699A575179667BB00A8157F /* libGraphicsMagick.3.dylib */; };
+		669BBD1C17CDC18500492932 /* functions.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD0F17CDC18500492932 /* functions.c */; };
+		669BBD1F17CDC18500492932 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD1217CDC18500492932 /* main.c */; };
+		669BBD3117CDC25000492932 /* area.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2517CDC23A00492932 /* area.c */; };
+		669BBD3217CDC25700492932 /* close_area.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2617CDC23A00492932 /* close_area.c */; };
+		669BBD3317CDC25A00492932 /* convert_raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2717CDC23A00492932 /* convert_raw.c */; };
+		669BBD3417CDC26100492932 /* corss_correlation.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2917CDC23A00492932 /* corss_correlation.c */; };
+		669BBD3517CDC26300492932 /* edgelap.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2A17CDC23A00492932 /* edgelap.c */; };
+		669BBD3617CDC26600492932 /* histogram.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2B17CDC23A00492932 /* histogram.c */; };
+		669BBD3717CDC26800492932 /* labeling.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2C17CDC23A00492932 /* labeling.c */; };
+		669BBD3817CDC26A00492932 /* max_contrast.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2D17CDC23A00492932 /* max_contrast.c */; };
+		669BBD3917CDC26D00492932 /* otsu_th.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2E17CDC23A00492932 /* otsu_th.c */; };
+		669BBD3A17CDC27000492932 /* raw_files.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD2F17CDC23A00492932 /* raw_files.c */; };
+		669BBD3B17CDC27300492932 /* reconstruction.c in Sources */ = {isa = PBXBuildFile; fileRef = 669BBD3017CDC23A00492932 /* reconstruction.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6695A8F9176837E300B556F8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6695A8FB176837E300B556F8 /* tissuereconstruction */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tissuereconstruction; sourceTree = BUILT_PRODUCTS_DIR; };
+		6699A575179667BB00A8157F /* libGraphicsMagick.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGraphicsMagick.3.dylib; path = /opt/local/lib/libGraphicsMagick.3.dylib; sourceTree = "<absolute>"; };
+		669BBD0617CDC17900492932 /* max_contrast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = max_contrast.h; path = tissuereconstruction/header/max_contrast.h; sourceTree = SOURCE_ROOT; };
+		669BBD0717CDC17900492932 /* raw_files.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = raw_files.h; path = tissuereconstruction/header/raw_files.h; sourceTree = SOURCE_ROOT; };
+		669BBD0817CDC17900492932 /* typedef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = typedef.h; path = tissuereconstruction/header/typedef.h; sourceTree = SOURCE_ROOT; };
+		669BBD0F17CDC18500492932 /* functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = functions.c; path = tissuereconstruction/functions.c; sourceTree = SOURCE_ROOT; };
+		669BBD1217CDC18500492932 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = tissuereconstruction/main.c; sourceTree = SOURCE_ROOT; };
+		669BBD2517CDC23A00492932 /* area.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = area.c; path = tissuereconstruction/core/area.c; sourceTree = SOURCE_ROOT; };
+		669BBD2617CDC23A00492932 /* close_area.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = close_area.c; path = tissuereconstruction/core/close_area.c; sourceTree = SOURCE_ROOT; };
+		669BBD2717CDC23A00492932 /* convert_raw.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = convert_raw.c; path = tissuereconstruction/core/convert_raw.c; sourceTree = SOURCE_ROOT; };
+		669BBD2817CDC23A00492932 /* convert_raw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = convert_raw.h; path = tissuereconstruction/core/convert_raw.h; sourceTree = SOURCE_ROOT; };
+		669BBD2917CDC23A00492932 /* corss_correlation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = corss_correlation.c; path = tissuereconstruction/core/corss_correlation.c; sourceTree = SOURCE_ROOT; };
+		669BBD2A17CDC23A00492932 /* edgelap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = edgelap.c; path = tissuereconstruction/core/edgelap.c; sourceTree = SOURCE_ROOT; };
+		669BBD2B17CDC23A00492932 /* histogram.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = histogram.c; path = tissuereconstruction/core/histogram.c; sourceTree = SOURCE_ROOT; };
+		669BBD2C17CDC23A00492932 /* labeling.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = labeling.c; path = tissuereconstruction/core/labeling.c; sourceTree = SOURCE_ROOT; };
+		669BBD2D17CDC23A00492932 /* max_contrast.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = max_contrast.c; path = tissuereconstruction/core/max_contrast.c; sourceTree = SOURCE_ROOT; };
+		669BBD2E17CDC23A00492932 /* otsu_th.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = otsu_th.c; path = tissuereconstruction/core/otsu_th.c; sourceTree = SOURCE_ROOT; };
+		669BBD2F17CDC23A00492932 /* raw_files.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = raw_files.c; path = tissuereconstruction/core/raw_files.c; sourceTree = SOURCE_ROOT; };
+		669BBD3017CDC23A00492932 /* reconstruction.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = reconstruction.c; path = tissuereconstruction/core/reconstruction.c; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6695A8F8176837E300B556F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6699A576179667BB00A8157F /* libGraphicsMagick.3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6695A8F0176837E300B556F8 = {
+			isa = PBXGroup;
+			children = (
+				6695A8FE176837E300B556F8 /* tissuereconstruction */,
+				6695A8FC176837E300B556F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6695A8FC176837E300B556F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6695A8FB176837E300B556F8 /* tissuereconstruction */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6695A8FE176837E300B556F8 /* tissuereconstruction */ = {
+			isa = PBXGroup;
+			children = (
+				669BBD1217CDC18500492932 /* main.c */,
+				669BBD0F17CDC18500492932 /* functions.c */,
+				669BBD2417CDC20D00492932 /* core */,
+				669BBD0517CDC06500492932 /* header */,
+				6695A95A176843BD00B556F8 /* resource */,
+			);
+			name = tissuereconstruction;
+			path = max_contrast;
+			sourceTree = "<group>";
+		};
+		6695A95A176843BD00B556F8 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				6699A575179667BB00A8157F /* libGraphicsMagick.3.dylib */,
+			);
+			name = resource;
+			sourceTree = "<group>";
+		};
+		669BBD0517CDC06500492932 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				669BBD0617CDC17900492932 /* max_contrast.h */,
+				669BBD0717CDC17900492932 /* raw_files.h */,
+				669BBD0817CDC17900492932 /* typedef.h */,
+			);
+			name = header;
+			sourceTree = "<group>";
+		};
+		669BBD2417CDC20D00492932 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				669BBD2517CDC23A00492932 /* area.c */,
+				669BBD2617CDC23A00492932 /* close_area.c */,
+				669BBD2717CDC23A00492932 /* convert_raw.c */,
+				669BBD2817CDC23A00492932 /* convert_raw.h */,
+				669BBD2917CDC23A00492932 /* corss_correlation.c */,
+				669BBD2A17CDC23A00492932 /* edgelap.c */,
+				669BBD2B17CDC23A00492932 /* histogram.c */,
+				669BBD2C17CDC23A00492932 /* labeling.c */,
+				669BBD2D17CDC23A00492932 /* max_contrast.c */,
+				669BBD2E17CDC23A00492932 /* otsu_th.c */,
+				669BBD2F17CDC23A00492932 /* raw_files.c */,
+				669BBD3017CDC23A00492932 /* reconstruction.c */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6695A8FA176837E300B556F8 /* tissuereconstruction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6695A905176837E300B556F8 /* Build configuration list for PBXNativeTarget "tissuereconstruction" */;
+			buildPhases = (
+				6695A8F7176837E300B556F8 /* Sources */,
+				6695A8F8176837E300B556F8 /* Frameworks */,
+				6695A8F9176837E300B556F8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tissuereconstruction;
+			productName = max_contrast;
+			productReference = 6695A8FB176837E300B556F8 /* tissuereconstruction */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6695A8F2176837E300B556F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Adam Lin";
+			};
+			buildConfigurationList = 6695A8F5176837E300B556F8 /* Build configuration list for PBXProject "tissuereconstruction" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6695A8F0176837E300B556F8;
+			productRefGroup = 6695A8FC176837E300B556F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6695A8FA176837E300B556F8 /* tissuereconstruction */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6695A8F7176837E300B556F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669BBD1C17CDC18500492932 /* functions.c in Sources */,
+				669BBD1F17CDC18500492932 /* main.c in Sources */,
+				669BBD3117CDC25000492932 /* area.c in Sources */,
+				669BBD3217CDC25700492932 /* close_area.c in Sources */,
+				669BBD3317CDC25A00492932 /* convert_raw.c in Sources */,
+				669BBD3417CDC26100492932 /* corss_correlation.c in Sources */,
+				669BBD3517CDC26300492932 /* edgelap.c in Sources */,
+				669BBD3617CDC26600492932 /* histogram.c in Sources */,
+				669BBD3717CDC26800492932 /* labeling.c in Sources */,
+				669BBD3817CDC26A00492932 /* max_contrast.c in Sources */,
+				669BBD3917CDC26D00492932 /* otsu_th.c in Sources */,
+				669BBD3A17CDC27000492932 /* raw_files.c in Sources */,
+				669BBD3B17CDC27300492932 /* reconstruction.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6695A903176837E300B556F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				"DEBUG_INFORMATION_FORMAT[sdk=*]" = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+		6695A904176837E300B556F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "";
+				SDKROOT = "";
+			};
+			name = Release;
+		};
+		6695A906176837E300B556F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_USE_INDIRECT_FUNCTION_CALLS = NO;
+				HEADER_SEARCH_PATHS = /opt/local/include/GraphicsMagick/;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib/,
+					/opt/local/bin/,
+					/usr/local/opt/,
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = tissuereconstruction;
+				SDKROOT = "";
+				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_LDFLAGS = "";
+			};
+			name = Debug;
+		};
+		6695A907176837E300B556F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_USE_INDIRECT_FUNCTION_CALLS = NO;
+				HEADER_SEARCH_PATHS = /opt/local/include/GraphicsMagick/;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib/,
+					/opt/local/bin/,
+					/usr/local/opt/,
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = tissuereconstruction;
+				SDKROOT = "";
+				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_LDFLAGS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6695A8F5176837E300B556F8 /* Build configuration list for PBXProject "tissuereconstruction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6695A903176837E300B556F8 /* Debug */,
+				6695A904176837E300B556F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6695A905176837E300B556F8 /* Build configuration list for PBXNativeTarget "tissuereconstruction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6695A906176837E300B556F8 /* Debug */,
+				6695A907176837E300B556F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6695A8F2176837E300B556F8 /* Project object */;
+}

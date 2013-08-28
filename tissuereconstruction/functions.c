@@ -117,6 +117,8 @@ void restocking(char *path, int start_slide, int end_slide, char *output_path)
         //z->angel_pixel_map  = NULL;
         f++;
     }
+    
+    
     free(a);
     free(t);
     free(c);
@@ -248,9 +250,11 @@ void image_correction(char *path, char *output_path){
     DIR             *FD;
     struct dirent   *in_file;
     char            *imagePath;
-    char            *imageName;
+    //char            *imageName;
+    char            *name;
+    int             count = 1;
 
-    if (NULL == (FD = opendir(FILE_PATH)))
+    if (NULL == (FD = opendir(path)))
     {
         fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
         free(FD);
@@ -275,19 +279,23 @@ void image_correction(char *path, char *output_path){
         final_img = get_image_from_path(imagePath);
         
         printf("File name: %s\n", in_file->d_name);
-        // put your image processing function/measure here !
         
-        asprintf(&imageName, "%s%s", path, in_file->d_name);
-        
-        // crop image before reconstruction （IMAGE_WIDTH, IMAGE_HEIGHT, WIDTH_OFFSET, HEIGHT_OFFSET)
+        /*  put your image processing function/measure here !   */
+        /*  crop image before reconstruction （IMAGE_WIDTH, IMAGE_HEIGHT, WIDTH_OFFSET, HEIGHT_OFFSET)   */
         //final_img = crop_image(final_img, imageName, 1200, 1600, 3850, 1960); //brain_2
         //final_img = crop_image(final_img, imageName, 1727, 1575, 2450, 1850); //blockface 08.05.2013
-        final_img = get_threshold_image(final_img, t);
-
-        dump_image(final_img, output_path, in_file->d_name , "jpeg");
+        
+        final_img = rotate_image(final_img, 90);
+        
+        for (int i = 0 ; i < 6 ; i ++) {
+            asprintf(&name, "%.4i%s", count, "_image");
+            dump_image(final_img, output_path, name, "jpg");
+            count ++;
+            printf("Name Changed: %s\n", name);
+        }
+        DestroyImage(final_img);
     }
     closedir(FD);
     free(t);
     return;
-    
 }

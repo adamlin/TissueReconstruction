@@ -154,6 +154,7 @@ Image       *dump_his_image(Image *img, int *histogram, c_image_args *a);
 Image       *deconstruction(Image *img);
 Image       *reduce_noice(Image *img);
 Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur);
+Image       *rotate_image(Image *img, int degrees);
 int   		dump_image(Image *img, char *root_path, char *name, char *image_type);
 
 /*      histogram.c     */
@@ -214,6 +215,7 @@ Image           *angel_final_construct(c_zdimension *z);
 /*      corss_correlation.c    */
 double          *cross_correlation(Image *first_img, Image *second_img, c_cross_correlation *b);
 #define SQR2(x) ((x) * (x))
+
 
 #endif
 

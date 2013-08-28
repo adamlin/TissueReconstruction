@@ -17,13 +17,26 @@
  **
  */
 
-#ifndef max_contrast_typedef_h
-#define max_contrast_typedef_h
+#ifndef max_contrast_convert_raw_h
+#define max_contrast_convert_raw_h
 
-typedef struct	s_histogram			c_histogram;
-typedef struct	s_image_args		c_image_args;
-typedef struct	s_threshold         c_threshold;
-typedef struct  s_image             c_image;
-typedef struct  s_zdimension        c_zdimension;
-typedef struct  s_cross_correlation c_cross_correlation;
-#endif
+#include <sys/stat.h>
+
+
+typedef struct	s_header	t_header;
+
+struct			s_header
+{
+    int                     dim_nb;
+    unsigned int            *sizes;
+    double                  *start;
+    double                  *steps;
+    char                    **dim_name;
+    unsigned long long int	*dim_offset;
+    unsigned int            *slice_size;
+    unsigned int            slice_max;
+};
+
+
+#endif /* __MINC_TOOL_CORE__ */
+

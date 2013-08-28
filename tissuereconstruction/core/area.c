@@ -75,7 +75,7 @@ char        check_neighborhoodc(unsigned char *pixel_map, int x, int y, int widt
 {
     ExceptionInfo	exception;
     // Image           *img;
-    char            *name;
+    //char            *name;
     static int      count = 0;
     static  unsigned short    color = 10;
     int     y_plus = (y + 1 > height ? height : y + 1);
@@ -122,7 +122,7 @@ char        check_neighborhoodc(unsigned char *pixel_map, int x, int y, int widt
     //img = ConstituteImage(width, height, "I", CharPixel, pixel_map, &exception);
     //dump_image(img, FILE_THRESHOD_OUTPUT, name, "png");
     count++;
-    // free(name);
+    //free(name);
     return color;
 }
 

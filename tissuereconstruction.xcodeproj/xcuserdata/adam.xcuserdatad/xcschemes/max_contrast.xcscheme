@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6695A8FA176837E300B556F8"
                BuildableName = "max_contrast"
-               BlueprintName = "max_contrast"
-               ReferencedContainer = "container:max_contrast.xcodeproj">
+               BlueprintName = "tissuereconstruction"
+               ReferencedContainer = "container:tissuereconstruction.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6695A8FA176837E300B556F8"
             BuildableName = "max_contrast"
-            BlueprintName = "max_contrast"
-            ReferencedContainer = "container:max_contrast.xcodeproj">
+            BlueprintName = "tissuereconstruction"
+            ReferencedContainer = "container:tissuereconstruction.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6695A8FA176837E300B556F8"
             BuildableName = "max_contrast"
-            BlueprintName = "max_contrast"
-            ReferencedContainer = "container:max_contrast.xcodeproj">
+            BlueprintName = "tissuereconstruction"
+            ReferencedContainer = "container:tissuereconstruction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6695A8FA176837E300B556F8"
             BuildableName = "max_contrast"
-            BlueprintName = "max_contrast"
-            ReferencedContainer = "container:max_contrast.xcodeproj">
+            BlueprintName = "tissuereconstruction"
+            ReferencedContainer = "container:tissuereconstruction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

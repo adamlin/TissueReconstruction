@@ -63,8 +63,8 @@ int   		dump_image(Image *img, char *root_path, char *name, char *image_type)
     strcpy(img->filename, final_path);
     WriteImage(image_info, img);
     free(final_path);
-    DestroyImage(img);
-    DestroyImageInfo(image_info);
+    //DestroyImage(img); // TODO: put it back
+    //DestroyImageInfo(image_info); // TODO: put it back
     return (0);
 }
 
@@ -275,7 +275,6 @@ Image       *reduce_noice(Image *img){
     return (new_img);
 }
 
-
 Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur){
     Image           *new_img = NULL;
     ExceptionInfo	exception;
@@ -288,5 +287,16 @@ Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes f
     DestroyImage(img);
     SyncImagePixels(new_img);
     return (new_img);
+}
+
+Image       *rotate_image(Image *img, int degrees){
+    Image           *retated_img = NULL;
+    ExceptionInfo	exception;
+    GetExceptionInfo(&exception);
+    
+    retated_img = RotateImage(img, degrees, &exception);
+    DestroyImage(img);
+    SyncImagePixels(retated_img);
+    return (retated_img);
 }
 
