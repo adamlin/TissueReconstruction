@@ -83,9 +83,9 @@ void    dumpDirectoryContentsIntoRawFile(char *dir, int fd){
     free(namelist);
 }
 
+// TODO: assign dimension value to h->sizes
 void    dumpStackIntoRawFile(char *file, char *out_file){
     char    *filePath;
-    int     x = 1200, y = 1600, z = 840;
     int     fd = -1;     //open || create file for binary append
     
     if ((fd = open(out_file, (O_CREAT | O_TRUNC | O_RDWR), 0666)) == -1) {
@@ -94,44 +94,70 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
         return;
     }
     
+    c_raw_header    *h = malloc(sizeof(*h));
+    
+    h->dim_nb = 3;
+    h->type = 1;
+    h->sizes        = malloc(h->dim_nb * sizeof(*h->sizes));
+    h->start        = malloc(h->dim_nb * sizeof(*h->start));
+    h->slice_size   = malloc(h->dim_nb * sizeof(*h->slice_size));
+    h->dim_offset   = malloc(h->dim_nb * sizeof(*h->dim_offset));
+    h->steps        = malloc(h->dim_nb * sizeof(*h->steps));
+    
+    h->sizes[0] = 1200; // x
+    h->sizes[1] = 1600; // y
+    h->sizes[2] = 840;  // z
+    h->slice_max = h->sizes[0] * h->sizes[1] * h->sizes[2];
+    
+    
+    for (int i = 0 ; i < h->dim_nb; i ++) {
+        h->steps[i] = 1.0;
+        h->start[i] = (h->sizes[i] / 2);
+        h->start[i] *= -1;
+        h->slice_size[i] = 1;
+        int j = 0;
+        while (j < h->dim_nb)
+        {
+            if (j != i)
+                h->slice_size[i] *= h->sizes[j];
+            j++;
+        }
+        
+    }
+    
+    h->dim_offset[0] = 0;
+    
+    for (int i = 0; i < h->dim_nb; i++) {
+        h->dim_offset[i] = (unsigned long long)(h->dim_offset[i - 1] + (unsigned long long)((unsigned long long)h->slice_size[i - 1] * (unsigned long long)h->sizes[i - 1]));
+    }
+    
     char head[4096];
     char pre_head[50];
     memset(pre_head, '\0', 50);
     memset(head, '\0', 4096);
     int len = 0;
     
-    /*  temp math for slides    */
-    int slide_size_x = y * z;
-    int slide_size_y = x * z;
-    int slide_size_z = x * y;
-    double start_x = (x / 2) * (-1);
-    double start_y = (y / 2) * (-1);
-    double start_z = (z / 2) * (-1);
-    unsigned long long slide_all = x * y * z;
-    unsigned long long slider_all_n = slide_all * 2;
     
     /*  first dump header    */
     sprintf(head, "%i|%i:%i:%i|%g:%g:%g|%g:%g:%g|%s|%s|%s|%c|%c|%c|%i:%i:%i|%i|%llu:%llu:%llu|%i|",
-            3,                          //h->dim_nb,
-            z, y, x,                    //h->sizes[0], h->sizes[1], h->sizes[2],
-            start_z, start_y, start_x,  //h->start[0], h->start[1], h->start[2],
-            1.0,1.0,1.0,                //h->steps[0], h->steps[1], h->steps[2],
-            "zspace","yspace","xspace", //h->dim_name[0], h->dim_name[1], h->dim_name[2],
-            'z','y','x',                //h->dim_name[0][0], h->dim_name[1][0], h->dim_name[2][0],
-            slide_size_z,slide_size_y,slide_size_x,     //h->slice_size[0], h->slice_size[1], h->slice_size[2],
-            (int)slide_all,                 //h->slice_max,
-            (unsigned long long)0, (unsigned long long)slide_all, (unsigned long long)slider_all_n, 2);
-                                        //(unsigned long long)h->dim_offset[0], (unsigned long long)h->dim_offset[1],
-                                        //(unsigned long long)h->dim_offset[2], MINC);
+            h->dim_nb,
+            h->sizes[0], h->sizes[1], h->sizes[2],
+            h->start[0], h->start[1], h->start[2],
+            h->steps[0], h->steps[1], h->steps[2],
+            "zspace","yspace","xspace", //h->dim_name[i]
+            'z','y','x',                //h->dim_name[i][j]
+            h->slice_size[0], h->slice_size[1], h->slice_size[2],
+            h->slice_max,
+            (unsigned long long)h->dim_offset[0], (unsigned long long)h->dim_offset[1],(unsigned long long)h->dim_offset[2], h->type);
     len = (int)strlen(head);
     sprintf(pre_head, "@IaMraW@|%i|", len);
     write(fd, pre_head, strlen(pre_head));
     write(fd, head, len);
     
     // then dump all dimensions
-    for (int i = 0 ; i < 3; i++) {
+    for (int i = 0 ; i < h->dim_nb; i++) {
         if (i == 0) {
-            asprintf(&filePath, "%s%s", file, "z");
+            asprintf(&filePath, "%s%s", file, "x");
             dumpDirectoryContentsIntoRawFile(filePath, fd);
         }
         if (i == 1) {
@@ -139,11 +165,12 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
             dumpDirectoryContentsIntoRawFile(filePath, fd);
         }
         if (i == 2) {
-            asprintf(&filePath, "%s%s", file, "x");
+            asprintf(&filePath, "%s%s", file, "z");
             dumpDirectoryContentsIntoRawFile(filePath, fd);
         }
     }
     free(filePath);
+    free(h);
     close(fd);
 }
 

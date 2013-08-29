@@ -126,7 +126,7 @@ for dcraw decoding with command="/opt/local/bin/"
 #define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/blockface_allbrains/gray_his_txt/"
 
 #define FILE_XYZ            "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/"
-#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack17.raw"
+#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack20.raw"
 
 /*      for home used   */
 /*
