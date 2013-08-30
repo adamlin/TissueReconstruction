@@ -22,13 +22,16 @@ Build Phases in Xcode:
 
     Include Link Binary With Libraries: libGraphicsMagick.3.dylib
 
-The reconstruction functions are located in /tissuereconstruction/function.c under the name of: 
+The reconstruction functions are located in /tissuereconstruction/src/restacking.c under the name of: 
 
     restocking (FILE_PATH, OUTPUT_PATH)  =>  image restocking
 
+The image processing functions are located in /tissuereconstruction/src/process_image.c under the name of: 
+
     image_processing (FILE_PATH, OUTPUT_PATH) => max contrast, masking, deconstruction, resizing …….
 
-    Please also modify FILE_PATHS in /tissuereconstruction/header/max_contrast.h to locate current brain tissue files
+**** Please also modify FILE_PATHS in /tissuereconstruction/header/max_contrast.h to locate current brain tissue files
+
 ## Reconstruction Images Example:
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=300 HEIGHT=150> 
 <IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=300 HEIGHT=150>
