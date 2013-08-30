@@ -27,10 +27,10 @@ unsigned char *yz_reconstruction(Image *img, c_zdimension *z, int i_px){
     PixelPacket     *px;
     
     if (z->yz_pixel_map == 0){
-        z->y_dec = (int)img->rows;
-        z->x_dec = (int)img->columns;
-        z->z_dec = z->z_dec;
-        z->yz_pixel_map         = malloc(z->y_dec *  z->z_dec * sizeof(*z->yz_pixel_map));
+        z->y_dec        = (int)img->rows;
+        z->x_dec        = (int)img->columns;
+        z->z_dec        = z->z_dec;
+        z->yz_pixel_map = malloc(z->y_dec *  z->z_dec * sizeof(*z->yz_pixel_map));
     }
     px = GetImagePixels(img, 0, 0, img->columns, img->rows);
     
@@ -63,8 +63,8 @@ unsigned char *xz_reconstruction(Image *img, c_zdimension *z, int i_px){
     PixelPacket     *px;
     
     if (z->xz_pixel_map == 0){
-        z->p_dec = z->z_dec;
-        z->x_dec = (int)img->columns;
+        z->p_dec        = z->z_dec;
+        z->x_dec        = (int)img->columns;
         z->xz_pixel_map = malloc(z->x_dec *  z->p_dec * sizeof(*z->xz_pixel_map));
     }
     px = GetImagePixels(img, 0, 0, img->columns, img->rows);
@@ -230,4 +230,28 @@ Image   *get_avg_pixel(Image *img, Image *first_img, Image *second_img, Image *t
     free(pixel_map);
     SyncImagePixels(new_img);
     return (new_img);
+}
+
+int create_three_dimension_folder(char *path){
+    int		fd = 0;
+    DIR     *FDD;
+    char    *folderPath;
+    
+    if (NULL == (FDD = opendir(path)))
+    {
+        fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
+        free(FDD);
+        return -1;
+    }
+    
+    if ((fd = open(path, O_RDWR)) == -1){
+        asprintf(&folderPath, "%s%s", path, "x");
+        mkdir(folderPath, 0700);
+        asprintf(&folderPath, "%s%s", path, "y");
+        mkdir(folderPath, 0700);
+        asprintf(&folderPath, "%s%s", path, "z");
+        mkdir(folderPath, 0700);
+    }
+    free(folderPath);
+    return 0;
 }

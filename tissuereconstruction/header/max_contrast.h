@@ -126,7 +126,7 @@ for dcraw decoding with command="/opt/local/bin/"
 #define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/blockface_allbrains/gray_his_txt/"
 
 #define FILE_XYZ            "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/"
-#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack20.raw"
+#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack28.raw"
 
 /*      for home used   */
 /*
@@ -136,10 +136,13 @@ for dcraw decoding with command="/opt/local/bin/"
 #define FILE_HISTOGRAM_OUTPUT "/Users/AdamLin/Documents/CAI/brain_image_histogram/"
 */
 
-/*      functions.c     */
-void        restocking(char *path, int start_slide, int end_slide, char *output_path);
+/*      src/restacking.c        */
+void        restacking(char *path, int start_slide, int end_slide, char *output_path);
+/*      src/process_image.c      */
 void        image_processing(char *path, char *output_path);
+/*      src/functions.c          */
 void        image_correction(char *path, char *output_path);
+
 
 /*      max_contract.c  */
 Image		*get_image_from_path(char *path);
@@ -159,6 +162,7 @@ Image       *reduce_noice(Image *img);
 Image       *resize_image(Image *img, int re_columns, int re_rows, FilterTypes filter, int blur);
 Image       *rotate_image(Image *img, int degrees);
 int   		dump_image(Image *img, char *root_path, char *name, char *image_type);
+int   		dump_multi_image(Image *img, char *root_path, char *name, char *image_type);
 
 /*      histogram.c     */
 int		*create_histogram(Image *img, c_image_args *a);
@@ -211,15 +215,14 @@ Image           *get_avg_pixel(Image *img, Image *first_img, Image *second_img, 
 Image           *yz_final_construct(c_zdimension *z);
 Image           *xz_final_construct(c_zdimension *z);
 Image           *angel_final_construct(c_zdimension *z);
+int             create_three_dimension_folder(char *path);
 
 #define PI 3.14159265
 #define DR 0.0174532925
 
-/*      corss_correlation.c    */
+/*      cross_correlation.c    */
 double          *cross_correlation(Image *first_img, Image *second_img, c_cross_correlation *b);
 #define SQR2(x) ((x) * (x))
-
-
 
 #endif
 

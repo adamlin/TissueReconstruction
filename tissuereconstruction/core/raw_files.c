@@ -17,6 +17,12 @@
  **
  */
 
+
+/*
+ ** Remember to make z plane as Horizontal and x, y planes as vertical
+ ** so that we will be able to retack images in right direction.
+*/
+
 #include "max_contrast.h"
 #include "raw_files.h"
 
@@ -53,18 +59,48 @@ void    appendImageBytesToRaw(int fd, char * file) {
 }
 
 void    dumpDirectoryContentsIntoRawFile(char *dir, int fd){
-    struct dirent **namelist;
+    DIR           *FD = NULL;
+    struct dirent *in_file;
     char          *imagePath;
-    int n;
     
-    n = scandir(dir, &namelist, 0, alphasort);
-    // error scanning directory
-    if (n < 0) {
-        perror("scandir");
-        exit(-1);
+    // loop over image stack - in order //
+    if (NULL == (FD = opendir(dir)))
+    {
+        fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
+        free(FD);
+        return;
     }
     
-    // loop over image stack
+    while ((in_file = readdir(FD)))
+    {
+        printf("Processing %s\n", in_file->d_name);
+        if (!strcmp (in_file->d_name, "."))
+            continue;
+        if (!strcmp (in_file->d_name, ".."))
+            continue;
+        //APPLE Dir ISSUE
+        if (!strcmp (in_file->d_name, ".DS_Store"))
+            continue;
+        
+        asprintf(&imagePath, "%s/%s", dir, in_file->d_name);
+        appendImageBytesToRaw(fd, imagePath);
+    }
+    closedir(FD);
+ 
+    
+    // loop over image stack - strange behaviour (revise order) //
+    /*
+     int n;
+     struct dirent **namelist;
+    
+     n = scandir(dir, &namelist, 0, alphasort);
+     // error scanning directory
+     if (n < 0) {
+        perror("scandir");
+        exit(-1);
+     }
+     */
+    /*
     while(n--) {
         printf("Processing %s\n", namelist[n]->d_name);
         
@@ -80,7 +116,8 @@ void    dumpDirectoryContentsIntoRawFile(char *dir, int fd){
         appendImageBytesToRaw(fd, imagePath);
         free(namelist[n]);
     }
-    free(namelist);
+   free(namelist);
+    */
 }
 
 // TODO: assign dimension value to h->sizes
@@ -104,9 +141,9 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
     h->dim_offset   = malloc(h->dim_nb * sizeof(*h->dim_offset));
     h->steps        = malloc(h->dim_nb * sizeof(*h->steps));
     
-    h->sizes[0] = 1200; // x
-    h->sizes[1] = 1600; // y
-    h->sizes[2] = 840;  // z
+    h->sizes[0] = 1200;
+    h->sizes[1] = 1600;
+    h->sizes[2] = 840;  
     h->slice_max = h->sizes[0] * h->sizes[1] * h->sizes[2];
     
     
@@ -144,8 +181,8 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
             h->sizes[0], h->sizes[1], h->sizes[2],
             h->start[0], h->start[1], h->start[2],
             h->steps[0], h->steps[1], h->steps[2],
-            "zspace","yspace","xspace", //h->dim_name[i]
-            'z','y','x',                //h->dim_name[i][j]
+            "xspace","yspace","zspace", //h->dim_name[i]
+            'x','y','z',                //h->dim_name[i][j]
             h->slice_size[0], h->slice_size[1], h->slice_size[2],
             h->slice_max,
             (unsigned long long)h->dim_offset[0], (unsigned long long)h->dim_offset[1],(unsigned long long)h->dim_offset[2], h->type);
@@ -196,3 +233,5 @@ int		check_raw(char *path){
     printf("%i\n", fd);
     return (fd);
 }
+
+

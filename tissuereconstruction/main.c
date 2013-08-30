@@ -32,11 +32,27 @@
 int		main()
 {
     InitializeMagick("/");
-    //restocking(FILE_PATH, 0, 1600, FILE_CON_OUTPUT);
+
+    /*
+     ** image processing before restacking - max contrast, otsu-throsholding, cross correlation, image deconvolution
+     */
+    
     //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction("/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/x/", FILE_MAX_OUTPUT);
+    //image_correction("/Users/adam/Documents/blockface_allbrains/3DOutput/y/", FILE_MAX_OUTPUT);
     //check_raw(FILE_OUT_RAW);
-    dumpStackIntoRawFile(FILE_XYZ, FILE_OUT_RAW);
+    
+    /*
+     ** restack images - Parameters:(source dir, start slide, end slide, output dir)
+     */
+    
+    //restacking(FILE_PATH, 0, 1600, FILE_MAX_OUTPUT);
+    
+    /*
+    ** final - dump three planes to RAW file for Tissuestack used!
+    */
+    
+    dumpStackIntoRawFile("/Users/adam/Documents/blockface_allbrains/3DOutput/", FILE_OUT_RAW);
+    
     DestroyMagick();
     return (0);
 }

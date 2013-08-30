@@ -63,8 +63,28 @@ int   		dump_image(Image *img, char *root_path, char *name, char *image_type)
     strcpy(img->filename, final_path);
     WriteImage(image_info, img);
     free(final_path);
-    //DestroyImage(img); // TODO: put it back
-    //DestroyImageInfo(image_info); // TODO: put it back
+    DestroyImage(img); // TODO: put it back
+    DestroyImageInfo(image_info); // TODO: put it back
+    return (0);
+}
+
+int   		dump_multi_image(Image *img, char *root_path, char *name, char *image_type)
+{
+    char		*final_path;
+    ImageInfo	*image_info;
+    ExceptionInfo	exception;
+    
+    GetExceptionInfo(&exception);
+    if ((image_info = CloneImageInfo((ImageInfo *)NULL)) == NULL) {
+        CatchException(&exception);
+        DestroyImageInfo(image_info);
+        return -1;
+    }
+    
+    asprintf(&final_path, "%s/%s.%s", root_path, name, image_type);
+    strcpy(img->filename, final_path);
+    WriteImage(image_info, img);
+    free(final_path);
     return (0);
 }
 
