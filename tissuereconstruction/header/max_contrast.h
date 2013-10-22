@@ -28,7 +28,7 @@
 #define max_contrast_max_contrast_h
 
 #ifndef __APPLE__
-
+#define _GNU_SOURCE
 #include <sys/prctl.h>
 #include <libudev.h>
 #include <linux/input.h>
@@ -118,15 +118,15 @@ On the nef file format, I have edit
 for dcraw decoding with command="/opt/local/bin/"
 */
 
-#define FILE_PATH           "/Users/adam/Documents/blockface_allbrains/brain_3_gray/"
+#define FILE_PATH           "/Users/adam/Desktop/image/JPG_CROP/"
 #define FILE_GRAY_OUTPUT    "/Users/adam/Documents/blockface_allbrains/gray_his/"
 #define FILE_HISTOGRAM      "/Users/adam/Documents/blockface_allbrains/gray_his/"
 #define FILE_CON_OUTPUT     "/Users/adam/Documents/blockface_allbrains/zConOutput/brain_3_complele/"
-#define FILE_MAX_OUTPUT     "/Users/adam/Documents/blockface_allbrains/zMaxOutput/"
+#define FILE_MAX_OUTPUT     "/Users/adam/Desktop/image/temp_maping/"
 #define FILE_HISTOGRAM_OUTPUT "/Users/adam/Documents/blockface_allbrains/gray_his_txt/"
 
 #define FILE_XYZ            "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/"
-#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/restack28.raw"
+#define FILE_OUT_RAW        "/Users/adam/Documents/blockface_allbrains/zConOutput/restacked_brain_3/reconstruction_04.raw"
 
 /*      for home used   */
 /*
