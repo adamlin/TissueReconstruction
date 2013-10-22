@@ -28,6 +28,7 @@
 #define max_contrast_max_contrast_h
 
 #ifndef __APPLE__
+#define _GNU_SOURCE
 
 #include <sys/prctl.h>
 #include <libudev.h>
