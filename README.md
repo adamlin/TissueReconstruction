@@ -42,5 +42,13 @@ geometry and smoothness of the brain shape was improved. First image is x-z dime
 image is y-z dimension on x 850 deep width.
 ## Compilation
 
-This software can be compiled under Linux or Mac OSX; however, the current development has only been tested in Mac OSX.
-To be able to run the program in Linux, please create a Make file.
+This software can be compiled under Linux or Mac OSX. 
+
+## Installation (Linux)
+
+To be able to run the program in Linux, please make sure you have installed "GraphicsMagick" lib and add-on library "libudev" in your system. 
+More information on installation instructions can be found in the following files: (http://www.graphicsmagick.org/INSTALL-unix.html)
+
+After completed installation, build the Makefile in (TissueReconstruction -> tissueReconstruction -> make). The built program is called "TissueReconstruction". It required two parameters to do the job. Example: (" ./TissueReconstruction BLOCKFACE_File_DIC Restocked_File_DIC ")
+
+
