@@ -36,4 +36,4 @@ compile:
     
 clean:
 	@echo  -e "\n\tCleaning...\n"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(DSYM)
