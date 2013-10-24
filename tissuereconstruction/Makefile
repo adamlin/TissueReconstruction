@@ -20,20 +20,20 @@ INCLUDE		=	-I./header
 
 LIB_PATH	=
 
-LIBS		=	-lm
+LIBS	=	-lm
 
 NAME	=	TissueReconstruction
 
-FLAGS		=	-Wall -ggdb -std=c99 -Wno-unused-result
+FLAGS	=	-Wall -ggdb -std=c99 #-Wno-unused-result
 
 CC		=	gcc
 
 all:	compile
 
 compile:
-	@echo -e "\n\tCompiling...\n"
+	@echo  -e "\n\tCompiling...\n"
 	@$(CC) $(SRCS) -o $(NAME) $(INCLUDE) $(LIB_PATH) $(LIBS) $(FLAGS) `GraphicsMagick-config --cppflags --libs --ldflags`
     
 clean:
-	@echo -e "\n\tCleaning...\n"
+	@echo  -e "\n\tCleaning...\n"
 	@rm -rf $(NAME)

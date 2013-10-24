@@ -57,10 +57,10 @@ void image_correction(char *path, char *output_path){
         
         /*  put your image processing function/measure here !   */
         /*  crop image before reconstruction （IMAGE_WIDTH, IMAGE_HEIGHT, WIDTH_OFFSET, HEIGHT_OFFSET)   */
-        //final_img = crop_image(final_img, imageName, 1200, 1600, 3850, 1960); //brain_2
+        //final_img = crop_image(final_img, imagePath, 1300, 1150, 1700, 3150); //brain_2
         //final_img = crop_image(final_img, imageName, 1727, 1575, 2450, 1850); //blockface 08.05.2013
         
-        final_img = rotate_image(final_img, 90);
+        //final_img = rotate_image(final_img, 90);
         
         asprintf(&name, "%.4i%s", count, "_image");
         dump_image(final_img, output_path, name, "jpg");

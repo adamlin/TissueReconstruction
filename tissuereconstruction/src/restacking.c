@@ -21,14 +21,14 @@
 
 void restacking(char *path, int start_slide, int end_slide, char *output_path)
 {
-    Image           *img, *yz_img, *xz_img, *angel_img;
+    Image           *img, *yz_img, *xz_img; // *angel_img;
     int             f = start_slide;
     DIR             *FD;
     struct dirent   *in_file;
     struct dirent   **namelist;
     char            *imagePath, *x_outputPath, *y_outputPath, *z_outputPath;
     char            *name;
-    int             count = 1;
+    //int             count = 1;
     
     if (NULL == (FD = opendir(path)))
     {
@@ -54,7 +54,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
      ** dupicate z plane images to meet slides requirement!
      ** important! need to compare how many slides in order to math pixels (z->z->dec)
     */
-    
+    /*
     FD = opendir(path);
     while ((in_file = readdir(FD)))
     {
@@ -69,7 +69,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
         asprintf(&imagePath, "%s%s", path, in_file->d_name);
         img = get_image_from_path(imagePath);
         
-        for (int i = 0 ; i < 6 ; i ++) {
+        for (int i = 0 ; i < 4 ; i ++) {
             asprintf(&name, "%.4i%s", count, "_xy_image");
             dump_multi_image(img, z_outputPath, name, "jpg");
             count ++;
@@ -78,6 +78,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
         DestroyImage(img);
     }
     closedir(FD);
+    */
     
     /*
      ** restacking image start from here!
@@ -142,16 +143,16 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
             z->yz_pixel_map     = yz_reconstruction(img, z, f);
             z->xz_pixel_map     = xz_reconstruction(img, z, f);
             //z->angel_pixel_map  = angel_reconstruction(img, z, f, 45);
-            
+
             DestroyImage(img);
             free(imagePath);
         }
         yz_img = yz_final_construct(z);
-        yz_img = resize_image(yz_img, z->z_dec * 6, z->y_dec, BoxFilter, 0.5);
+        yz_img = resize_image(yz_img, z->z_dec * 4, z->y_dec, BoxFilter, 0.5);
         yz_img = reduce_noice(yz_img);
         
         xz_img = xz_final_construct(z);
-        xz_img = resize_image(xz_img, z->x_dec, z->z_dec * 6, BoxFilter, 0.5);
+        xz_img = resize_image(xz_img, z->x_dec, z->z_dec * 4, BoxFilter, 0.5);
         xz_img = reduce_noice(xz_img);
         
         /*  angel restacking     */
@@ -175,10 +176,13 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
          dump_image(angel_img, output_path,name,"jpg");
          printf("restocked slide: %s\n", name);
         */
+        
         closedir(FD);
         z->yz_pixel_map     = NULL;
         z->xz_pixel_map     = NULL;
+        
         //z->angel_pixel_map  = NULL;
+        
         f++;
     }
     

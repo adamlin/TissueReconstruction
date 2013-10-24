@@ -176,6 +176,7 @@ Image		*get_grayscale_image(Image *img)
     info.colorspace = GRAYColorspace;
     info.number_colors = 256;
     QuantizeImage(&info, img);
+
     SyncImagePixels(img);
     return (img);
 }

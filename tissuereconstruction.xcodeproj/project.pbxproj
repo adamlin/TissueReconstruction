@@ -37,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6686058B1815FDA1007F5B36 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Makefile; path = tissuereconstruction/Makefile; sourceTree = "<group>"; };
 		6695A8FB176837E300B556F8 /* tissuereconstruction */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tissuereconstruction; sourceTree = BUILT_PRODUCTS_DIR; };
 		6699A575179667BB00A8157F /* libGraphicsMagick.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGraphicsMagick.3.dylib; path = /opt/local/lib/libGraphicsMagick.3.dylib; sourceTree = "<absolute>"; };
 		669BBD0617CDC17900492932 /* max_contrast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = max_contrast.h; path = tissuereconstruction/header/max_contrast.h; sourceTree = SOURCE_ROOT; };
@@ -73,6 +74,7 @@
 		6695A8F0176837E300B556F8 = {
 			isa = PBXGroup;
 			children = (
+				6686058B1815FDA1007F5B36 /* Makefile */,
 				6695A8FE176837E300B556F8 /* tissuereconstruction */,
 				6695A8FC176837E300B556F8 /* Products */,
 			);

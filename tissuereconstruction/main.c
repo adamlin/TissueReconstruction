@@ -24,35 +24,61 @@
  ** "Dcraw"
  */
 
-#define _GNU_SOURCE
-
 #include "max_contrast.h"
 #include "raw_files.h"
 
-int		main()
+int		main(int argc, char *argv[])
 {
     InitializeMagick("/");
+    #ifndef DEBUG
+    if (argc != 3) {
+        printf("Please provide only TWO file locations to restock and store images!\n");
+        return 0;
+    }
+    else{
+        char *f_imagePath = argv[1];
+        char *s_imagePath = argv[2];
+        char *f_ptr, *s_ptr;
+        int  ch = '/';
+        
+        f_ptr = strrchr(f_imagePath, ch);
+        s_ptr = strrchr(s_imagePath, ch);
+        
+        if (f_ptr != '/' || s_ptr != '/' ) {
+            if(f_ptr != '/')
+                asprintf(&f_imagePath, "%s/", f_imagePath);
+            if(s_ptr != '/')
+                asprintf(&s_imagePath, "%s/", s_imagePath);
+        }
 
-    /*
-     ** image processing before restacking - max contrast, otsu-throsholding, cross correlation, image deconvolution
-     */
+        restacking(f_imagePath, 0, 1000, s_imagePath);
+    }
+    #endif
     
-    //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
-    //image_correction("/Users/adam/Documents/blockface_allbrains/3DOutput/y/", FILE_MAX_OUTPUT);
-    //check_raw(FILE_OUT_RAW);
+    #ifdef DEBUG
+
+        /*
+         ** image processing before restacking - max contrast, otsu-throsholding, cross correlation, image deconvolution
+         */
+        
+        //image_processing(FILE_PATH, FILE_MAX_OUTPUT);
+        //image_correction("/Users/adam/Documents/blockface_allbrains/3DOutput/y/", FILE_MAX_OUTPUT);
+        //image_processing("/Users/adam/Desktop/image/JPG_CROP/", "/Users/adam/Desktop/image/JPG_CROP_GRAY");
+        //check_raw(FILE_OUT_RAW);  
+        
+        /*
+         ** restack images - Parameters:(source dir, start slide, end slide, output dir)
+         */
+        
+        restacking(FILE_PATH,10, 600, FILE_MAX_OUTPUT);
+        
+        /*
+        ** final - dump three planes to RAW file for Tissuestack used!
+        */
+
+        //dumpStackIntoRawFile("/Users/adam/Desktop/image/Reconstruction/", FILE_OUT_RAW);
     
-    /*
-     ** restack images - Parameters:(source dir, start slide, end slide, output dir)
-     */
-    
-    //restacking(FILE_PATH, 0, 1600, FILE_MAX_OUTPUT);
-    
-    /*
-    ** final - dump three planes to RAW file for Tissuestack used!
-    */
-    
-    dumpStackIntoRawFile("/Users/adam/Documents/blockface_allbrains/3DOutput/", FILE_OUT_RAW);
-    
+     #endif
     DestroyMagick();
     return (0);
 }
