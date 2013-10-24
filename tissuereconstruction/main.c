@@ -32,7 +32,10 @@ int		main(int argc, char **argv)
     InitializeMagick("/");
     #ifndef DEBUG
     if (argc != 4) {
-        printf("\n**************************************\nPlease provide paramter and TWO file locations for image reconstruction!\n**************************************\n\n");
+        printf("\n************************************************************************\n");
+        printf("Please provide paramter and TWO file locations for image reconstruction!\n");
+        printf("For example: ./TissueReconstruction restacking file_name file_output    \n");
+        printf("************************************************************************\n");
         //return 0;
     }
     else{
