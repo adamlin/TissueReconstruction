@@ -27,32 +27,44 @@
 #include "max_contrast.h"
 #include "raw_files.h"
 
-int		main(int argc, char *argv[])
+int		main(int argc, char **argv)
 {
     InitializeMagick("/");
     #ifndef DEBUG
-    if (argc != 3) {
-        printf("Please provide only TWO file locations to restock and store images!\n");
-        return 0;
+    if (argc != 4) {
+        printf("\n**************************************\nPlease provide paramter and TWO file locations for image reconstruction!\n**************************************\n\n");
+        //return 0;
     }
     else{
-        char *f_imagePath = argv[1];
-        char *s_imagePath = argv[2];
+        char *f_imagePath = strdup(argv[2]);
+        char *s_imagePath = strdup(argv[3]);
         char *f_ptr, *s_ptr;
         int  ch = '/';
         
         f_ptr = strrchr(f_imagePath, ch);
         s_ptr = strrchr(s_imagePath, ch);
         
-        if (f_ptr != '/' || s_ptr != '/' ) {
-            if(f_ptr != '/')
+        char *cht = "/";
+        
+        if (f_ptr != cht || s_ptr != cht ) {
+            if(f_ptr != cht)
                 asprintf(&f_imagePath, "%s/", f_imagePath);
-            if(s_ptr != '/')
+            if(s_ptr != cht)
                 asprintf(&s_imagePath, "%s/", s_imagePath);
         }
 
-        restacking(f_imagePath, 0, 1000, s_imagePath);
+        if (strcmp(argv[1], "processing") == 0)
+            image_processing(f_imagePath, s_imagePath);
+        else if (strcmp(argv[1], "restacking") == 0)
+            restacking(f_imagePath, 0, 1000, s_imagePath);
+        else if (strcmp(argv[1], "raw") == 0)
+            dumpStackIntoRawFile(f_imagePath, s_imagePath);
+        
+        free(f_imagePath);
+        free(s_imagePath);
     }
+    
+
     #endif
     
     #ifdef DEBUG
@@ -69,8 +81,8 @@ int		main(int argc, char *argv[])
         /*
          ** restack images - Parameters:(source dir, start slide, end slide, output dir)
          */
-        
-        restacking(FILE_PATH,10, 600, FILE_MAX_OUTPUT);
+    
+        //restacking(FILE_PATH,0, 1000, FILE_MAX_OUTPUT);
         
         /*
         ** final - dump three planes to RAW file for Tissuestack used!
