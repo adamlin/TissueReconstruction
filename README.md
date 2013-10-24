@@ -51,4 +51,8 @@ More information on installation instructions can be found in the following file
 
 After completed installation, build the Makefile in (TissueReconstruction -> tissueReconstruction -> make). The built program is called "TissueReconstruction". It required two parameters to do the job. Example: (" ./TissueReconstruction BLOCKFACE_File_DIC Restocked_File_DIC ")
 
+## Extension
 
+This project is an extension of TissueStack (tissuestack.com) research for the image processing. To abe able to show the final reconstructed 3D image results, it is possible to build a RAW file for Tissuestack uses. The RAW file compilation is located in /tissuereconstruction/src/raw_files.c under the name of:
+
+    dumpStackIntoRawFile(RESTOCKED_FILE_PATH, FILE_RAW_PATH) => dump reconstructed file (must contents x, y, z planes) to a RAW format
