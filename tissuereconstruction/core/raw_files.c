@@ -206,6 +206,8 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
             dumpDirectoryContentsIntoRawFile(filePath, fd);
         }
     }
+    
+    printf("\nDump 3D images to RAW file completed !! \n");
     free(filePath);
     free(h);
     close(fd);
