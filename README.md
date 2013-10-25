@@ -4,10 +4,10 @@ TissueReconstruction
 TissueReconstruction is a new technique for reconstruction of serial histological sections from mouse brains.
 TissueReconstruction has been written in C and it wrap graphicsmagick and ITK with new functionalities to reconstruct brain tissue images. 
 <BR/>
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/slides.jpg" ALT="restocking1" WIDTH=260 HEIGHT=200 ALIGN="center">
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/restacking.png" ALT="restocking1" WIDTH=260 HEIGHT=200>
+<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/restackingWithPlanes.png" ALT="restocking1" WIDTH=330 HEIGHT=200>
 <BR/>
-Fig. 1. Creating a 3D image volume by registering 2D histological slices (x, y, z). The slice order relative to the fixed 
-reference slice.
+Fig. 1. Creating a 3D histological volume by registering 2D image slices. The order of slice is related to the reference slice (Sref). The registration for each slice was obtained by concatenating the individual transformations after Si-ref independent alignments where i is the number of slices.
 ## Environment
 TissueReconstruction is currently developed through Mac Xcode. The main coding directory is in the /tissuereconstruction/. Other directories are system generated for building active architecture.
 Building Settings in Xcode:
@@ -42,5 +42,21 @@ geometry and smoothness of the brain shape was improved. First image is x-z dime
 image is y-z dimension on x 850 deep width.
 ## Compilation
 
-This software can be compiled under Linux or Mac OSX; however, the current development has only been tested in Mac OSX.
-To be able to run the program in Linux, please create a Make file.
+This software can be compiled under Linux or Mac OSX. 
+
+## Installation (Linux)
+
+To be able to run the program in Linux, please make sure you have installed "GraphicsMagick" lib and add-on library "libudev" in your system. 
+More information on installation instructions can be found in the following files: (http://www.graphicsmagick.org/INSTALL-unix.html)
+
+After completed installation, build the Makefile in (TissueReconstruction -> tissueReconstruction -> make). The built program is called "TissueReconstruction". It required two parameters to do the job. 
+Example:  ./TissueReconstruction restacking BLOCKFACE_File_DIC Restocked_File_DIC (available commands: restacking, processing and raw)
+
+## Extension
+
+This project is an extension of TissueStack (http://tissuestack.com) research for the image processing. To abe able to show the final reconstructed 3D image results, it is possible to build a RAW file for Tissuestack uses. 
+The RAW file compilation is located in /tissuereconstruction/src/raw_files.c under the name of:
+
+    dumpStackIntoRawFile(RESTOCKED_FILE_PATH, FILE_RAW_PATH) => dump reconstructed file to a RAW format
+
+PS: reconstructed image must contents x, y, z planes

@@ -173,6 +173,7 @@ double  *cross_correlation(Image *first_img, Image *second_img, c_cross_correlat
         //double final_px =  pattern_identification(f_px, s_px, width, 200);
         double final_px = do_int_calcs(save_f_px, save_s_px, max_f_px, max_s_px, sum_f_px, sum_s_px, n);
         //double final_px = 10 + b->ssum;
+
         printf("r: %f | zscore: %f\n", b->ssum, final_px);
 
     }

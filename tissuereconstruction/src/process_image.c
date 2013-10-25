@@ -21,9 +21,9 @@
 
 void image_processing(char *path, char *output_path)
 {
-    Image           *final_img = NULL, *org_img = NULL;
+    Image           *final_img = NULL;
     Image           *first_img = NULL, *second_img = NULL, *third_img = NULL;
-    int             *histogram;
+    //int             *histogram;
     DIR             *FD;
     struct dirent   *in_file;
     
@@ -33,7 +33,7 @@ void image_processing(char *path, char *output_path)
     char            *save_third_path   = NULL;
     double          *ssum;
     
-    if (NULL == (FD = opendir(FILE_PATH)))
+    if (NULL == (FD = opendir(path)))
     {
         fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
         free(FD);
@@ -81,8 +81,8 @@ void image_processing(char *path, char *output_path)
             second_img = get_image_from_path(save_second_path);
             third_img = get_image_from_path(save_third_path);
             
-            //final_img = get_avg_pixel(final_img, first_img, second_img, third_img);
-            DestroyImage(first_img);
+            final_img = get_avg_pixel(final_img, first_img, second_img, third_img);
+            //DestroyImage(first_img);
             ssum = cross_correlation(second_img, third_img, b); // cross correlation  - TODO: move pixel to right position.
             
             save_first_path = save_second_path;
@@ -99,14 +99,14 @@ void image_processing(char *path, char *output_path)
         //histogram = create_histogram(img, a);
         //dump_histogram(histogram, FILE_HISTOGRAM_OUTPUT, c, in_file->d_name, "txt");
         
-        /*
-         final_img = subtract_image(final_img, final_img);   // subtraction 2 images
-         final_img = contrast_image(final_img, 100);         // increase contrast to 100
-         final_img = get_threshold_image(final_img, t);      // thresholding image
-         final_img = blur_image(final_img, 2,2);             // blur images by 2*2
-         final_img = get_blur_maked(final_img, e);           // make all blur (black) to join together
-         final_img = close_area(final_img);                  // draw close areas
-         */
+        
+         //final_img = subtract_image(final_img, final_img);   // subtraction 2 images
+         //final_img = contrast_image(final_img, 100);         // increase contrast to 100
+         //final_img = get_threshold_image(final_img, t);      // thresholding image
+         //final_img = blur_image(final_img, 2,2);             // blur images by 2*2
+         //final_img = get_blur_maked(final_img, e);           // make all blur (black) to join together
+         //final_img = close_area(final_img);                  // draw close areas
+        
         
         /*
          img = get_area(img);
@@ -120,6 +120,7 @@ void image_processing(char *path, char *output_path)
         //final_img = maximum_contrast_image (final_img);
         //final_img = unsharp_mask_image(final_img, 3, 3); //deconvolution method using graphicmagic
         //final_img = reduce_noice(final_img);
+        
         dump_image(final_img, output_path, in_file->d_name , "jpeg");
         
         //DestroyImage(org_img);

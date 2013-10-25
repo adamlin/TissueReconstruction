@@ -111,6 +111,19 @@ unsigned char	get_contrasted_value(unsigned char min, unsigned char max,
     return (final_value);
 }
 
+inline unsigned long long mapUnsignedValue(unsigned char fromBitRange, unsigned char toBitRange, unsigned long long value) {
+    // cap at 64 bits
+    if (fromBitRange > 64 || toBitRange > 64) return 0;
+    
+    unsigned long long from = 1 << fromBitRange;
+    unsigned long long to = 1 << toBitRange;
+    
+    // check if value exceeds its native range
+    if (value > from) return 0;
+    
+    return (unsigned long long) lround(((double)value / from) * to);
+}
+
 void		apply_histogram(PixelPacket *px, unsigned char min, unsigned char max,
                             unsigned char dataset_min, unsigned char dataset_max,
                             int width, int height, unsigned long quantum_depth)
@@ -181,7 +194,7 @@ Image       *dump_his_image(Image *img, int *histogram, c_image_args *a)
 		DestroyImage(img);
 		return 0;
 	}
-    apply_histogram(px, 300, 500, 0, 255, a->width, a->height, img->depth);
+    apply_histogram(px, (unsigned char)300, (unsigned char)500, 0, 255, a->width, a->height, img->depth);
     SyncImagePixels(img);
     return img;
 }

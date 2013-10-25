@@ -141,9 +141,9 @@ void    dumpStackIntoRawFile(char *file, char *out_file){
     h->dim_offset   = malloc(h->dim_nb * sizeof(*h->dim_offset));
     h->steps        = malloc(h->dim_nb * sizeof(*h->steps));
     
-    h->sizes[0] = 1200;
-    h->sizes[1] = 1600;
-    h->sizes[2] = 840;  
+    h->sizes[0] = 956;
+    h->sizes[1] = 550;
+    h->sizes[2] = 450;
     h->slice_max = h->sizes[0] * h->sizes[1] * h->sizes[2];
     
     
