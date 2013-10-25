@@ -40,7 +40,7 @@ char    *otsu_th(int x_size1, int y_size1, char *image1, c_threshold *c)
     for (i = 0; i < GRAYLEVEL; i++) hist[i] = 0;
     for (y = 0; y < y_size1; y++)
         for (x = 0; x < x_size1; x++) {
-            hist[image1[y * x_size1 + x]]++;
+            hist[(unsigned char)image1[y * x_size1 + x]]++; //TODO: have changed unsigned for makefile uses. 25.10.2013
         }
     /* calculation of probability density */
     for ( i = 0; i < GRAYLEVEL; i ++ ) {
