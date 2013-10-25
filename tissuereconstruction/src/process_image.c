@@ -33,7 +33,7 @@ void image_processing(char *path, char *output_path)
     char            *save_third_path   = NULL;
     double          *ssum;
     
-    if (NULL == (FD = opendir(FILE_PATH)))
+    if (NULL == (FD = opendir(path)))
     {
         fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
         free(FD);

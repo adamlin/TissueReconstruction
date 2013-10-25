@@ -52,8 +52,13 @@ int		main(int argc, char **argv)
         if (f_ptr != cht || s_ptr != cht ) {
             if(f_ptr != cht)
                 asprintf(&f_imagePath, "%s/", f_imagePath);
-            if(s_ptr != cht)
-                asprintf(&s_imagePath, "%s/", s_imagePath);
+            if(s_ptr != cht){
+                struct stat st = {0};
+                asprintf(&s_imagePath, "%s/Restacking/", s_imagePath);
+                
+                if (stat(s_imagePath, &st) == -1)
+                    mkdir(s_imagePath, 0700);
+            }
         }
 
         if (strcmp(argv[1], "processing") == 0)

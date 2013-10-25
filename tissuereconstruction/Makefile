@@ -37,6 +37,8 @@ INCLUDE		=	-I./header
 
 LIB_PATH	=
 
+RM		=	rm -Rf
+
 LIBS	=	-lm
 
 NAME	=	TissueReconstruction
@@ -53,4 +55,4 @@ compile:
         
 clean:
 	@echo  -e "\n\tCleaning...\n"
-	@rm -rf $(NAME) $(NAME).dSYM
+	@rm -rf $(NAME) $(NAME).dSYM $(OBJ)
