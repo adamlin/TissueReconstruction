@@ -99,7 +99,7 @@ int		main(int argc, char **argv)
         ** final - dump three planes to RAW file for Tissuestack used!
         */
 
-        dumpStackIntoRawFile("/Users/adam/Desktop/image/Reconstruction/", FILE_OUT_RAW);
+        //dumpStackIntoRawFile("/Users/adam/Desktop/image/Reconstruction/", FILE_OUT_RAW);
     
      #endif
     DestroyMagick();
