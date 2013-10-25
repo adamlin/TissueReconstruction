@@ -65,8 +65,11 @@ int		main(int argc, char **argv)
             image_processing(f_imagePath, s_imagePath);
         else if (strcmp(argv[1], "restacking") == 0)
             restacking(f_imagePath, 0, 1000, s_imagePath);
-        else if (strcmp(argv[1], "raw") == 0)
+        else if (strcmp(argv[1], "raw") == 0){
+            asprintf(&s_imagePath, "%stissue.raw\n", s_imagePath);
+            printf("Create a new RAW file in : %s\n", s_imagePath);
             dumpStackIntoRawFile(f_imagePath, s_imagePath);
+        }
         
         free(f_imagePath);
         free(s_imagePath);
@@ -96,7 +99,7 @@ int		main(int argc, char **argv)
         ** final - dump three planes to RAW file for Tissuestack used!
         */
 
-        //dumpStackIntoRawFile("/Users/adam/Desktop/image/Reconstruction/", FILE_OUT_RAW);
+        dumpStackIntoRawFile("/Users/adam/Desktop/image/Reconstruction/", FILE_OUT_RAW);
     
      #endif
     DestroyMagick();
