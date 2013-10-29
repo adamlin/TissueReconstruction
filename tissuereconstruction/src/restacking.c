@@ -28,7 +28,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
     struct dirent   **namelist;
     char            *imagePath, *x_outputPath, *y_outputPath, *z_outputPath;
     char            *name;
-    //int             count = 1;
+    int             count = 1;
     
     if (NULL == (FD = opendir(path)))
     {
@@ -54,7 +54,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
      ** dupicate z plane images to meet slides requirement!
      ** important! need to compare how many slides in order to math pixels (z->z->dec)
     */
-    /*
+    
     FD = opendir(path);
     while ((in_file = readdir(FD)))
     {
@@ -78,7 +78,7 @@ void restacking(char *path, int start_slide, int end_slide, char *output_path)
         DestroyImage(img);
     }
     closedir(FD);
-    */
+    
     
     /*
      ** restacking image start from here!

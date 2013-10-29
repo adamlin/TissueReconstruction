@@ -51,7 +51,7 @@ all:	compile
 
 compile:
 	@echo  -e "\n\tCompiling...\n"
-	@$(CC) $(SRCS) -o $(NAME) $(INCLUDE) $(LIB_PATH) $(LIBS) $(FLAGS) `GraphicsMagick-config --cppflags --libs --ldflags`
+	@$(CC) $(SRCS) -o $(NAME) $(INCLUDE) $(LIB_PATH) $(LIBS) $(FLAGS) `GraphicsMagick-config --cppflags --libs --ldflags`
 clean:
 	@echo  -e "\n\tCleaning...\n"
 	@rm -rf $(NAME) $(NAME).dSYM $(OBJ)

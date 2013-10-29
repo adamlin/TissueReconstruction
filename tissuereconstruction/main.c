@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
         printf("Please provide paramter and TWO file locations for image reconstruction!\n");
         printf("For example: ./TissueReconstruction restacking file_name file_output    \n");
         printf("************************************************************************\n");
-        //return 0;
+        return 0;
     }
     else{
         char *f_imagePath = strdup(argv[2]);
@@ -73,10 +73,7 @@ int		main(int argc, char **argv)
         
         free(f_imagePath);
         free(s_imagePath);
-        
     }
-    
-
     #endif
     
     #ifdef DEBUG
