@@ -73,6 +73,7 @@ int		main(int argc, char **argv)
         
         free(f_imagePath);
         free(s_imagePath);
+        
     }
     
 
