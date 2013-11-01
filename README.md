@@ -50,7 +50,9 @@ To be able to run the program in Linux, please make sure you have installed "Gra
 More information on installation instructions can be found in the following files: (http://www.graphicsmagick.org/INSTALL-unix.html)
 
 After completed installation, build the Makefile in (TissueReconstruction -> tissueReconstruction -> make). The built program is called "TissueReconstruction". It required two parameters to do the job. Example:  
-    ./TissueReconstruction restacking blockface_file_dic restocked_file_dic 
+
+    ./TissueReconstruction restacking blockface_file_dic restocked_file_dic
+    
 (available commands: restacking, processing and raw)
 
 ## Extension
