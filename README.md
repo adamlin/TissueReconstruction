@@ -4,8 +4,8 @@ TissueReconstruction
 TissueReconstruction is a new technique for reconstruction of serial histological sections from mouse brains.
 TissueReconstruction has been written in C and it wrap graphicsmagick and ITK with new functionalities to reconstruct brain tissue images. 
 <BR/>
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/restacking.png" ALT="restocking1" WIDTH=260 HEIGHT=200>
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/restackingWithPlanes.png" ALT="restocking1" WIDTH=330 HEIGHT=200>
+<IMG SRC="https://www.dropbox.com/s/8k3jd7uu897gkyp/restacking.png" ALT="restocking1" WIDTH=260 HEIGHT=200>
+<IMG SRC="https://www.dropbox.com/s/n5x56wau4kh9sjq/restackingWithPlanes.png" ALT="restocking1" WIDTH=330 HEIGHT=200>
 <BR/>
 Fig. 1. Creating a 3D histological volume by registering 2D image slices. The order of slice is related to the reference slice (Sref). The registration for each slice was obtained by concatenating the individual transformations after Si-ref independent alignments where i is the number of slices.
 ## Environment
@@ -33,8 +33,8 @@ The image processing functions are located in /tissuereconstruction/src/process_
 **** Please also modify FILE_PATHS in /tissuereconstruction/header/max_contrast.h to locate current brain tissue files
 
 ## Reconstruction Images Example:
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300> 
-<IMG SRC="https://dl.dropboxusercontent.com/u/24447938/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300>
+<IMG SRC="https://www.dropbox.com/s/ddz0tbrhm0vdcgg/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300> 
+<IMG SRC="https://www.dropbox.com/s/umghetap4hs6ryr/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300>
 <BR/> 
 Fig. 2. Alignment of histological slices. To illustrate the alignment of slices through the image processing, 
 a 3D stack of unaligned and aligned tissue images are presented in the horizontal and sagittal plane. The 
