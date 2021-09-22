@@ -1,4 +1,4 @@
-TissueReconstruction
+TissueReconstruction (Blackface)
 ====================
 
 TissueReconstruction is a new technique for reconstruction of serial histological sections from mouse brains.
