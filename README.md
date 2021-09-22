@@ -33,7 +33,7 @@ The image processing functions are located in /tissuereconstruction/src/process_
 **** Please also modify FILE_PATHS in /tissuereconstruction/header/max_contrast.h to locate current brain tissue files
 
 ## Reconstruction Images Example:
-<IMG SRC="https://www.dropbox.com/s/ddz0tbrhm0vdcgg/xz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300> 
+<IMG SRC="https://www.dropbox.com/s/ddz0tbrhm0vdcgg/xz_image_reduceNoice_black.jpg?dl=0" ALT="restocking1" WIDTH=150 HEIGHT=300> 
 <IMG SRC="https://www.dropbox.com/s/umghetap4hs6ryr/yz_image_reduceNoice_black.jpg" ALT="restocking1" WIDTH=150 HEIGHT=300>
 <BR/> 
 Fig. 2. Alignment of histological slices. To illustrate the alignment of slices through the image processing, 
