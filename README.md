@@ -58,7 +58,7 @@ After completed installation, build the Makefile in (TissueReconstruction -> tis
 
 ## Extension
 
-This project is an extension of TissueStack (http://tissuestack.com) research for the image processing. To abe able to show the final reconstructed 3D image results, it is possible to build a RAW file for Tissuestack uses. 
+This project is an extension of TissueStack (http://tissuestack.org) research for the image processing. To abe able to show the final reconstructed 3D image results, it is possible to build a RAW file for Tissuestack uses. 
 The RAW file compilation is located in /tissuereconstruction/src/raw_files.c under the name of:
 
     dumpStackIntoRawFile(RESTOCKED_FILE_PATH, FILE_RAW_PATH) => dump reconstructed file to a RAW format
